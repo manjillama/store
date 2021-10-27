@@ -1,0 +1,9 @@
+.item-image {
+  position: relative;
+  width: 100%;
+}
+.item-image:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
