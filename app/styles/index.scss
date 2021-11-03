@@ -2,6 +2,7 @@
 @import './footer.scss';
 @import './navbar.scss';
 @import './item-card.scss';
+@import './product.scss';
 @import './mailerlite.scss';
 
 * {
@@ -28,7 +29,6 @@ body {
   font-size: 17px;
   font-weight: 400;
   margin: 0;
-  line-height: 1.8;
   letter-spacing: 0.05rem;
   background-color: #fff;
   color: #131415;
@@ -199,8 +199,7 @@ select {
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: ellipsis;
-  background: #fff url('/assets/images/chevron-down.svg') no-repeat right 12px
-    center;
+  background: #fff url('/assets/chevron-down.svg') no-repeat right 12px center;
   padding: 7px 28% 7px 8px;
   border-radius: 0;
   width: 100%;
@@ -319,6 +318,7 @@ ul {
   border: 1px solid transparent;
   margin-bottom: 1rem;
   font-weight: 500;
+  display: block;
   &.alert-danger {
     color: #fff;
     background-color: $bg-danger;

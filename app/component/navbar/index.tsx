@@ -63,8 +63,15 @@ const Navbar = () => {
                   transform: 'translateX(-50%)',
                 }}
               >
-                <Link href="/" passHref>
-                  <Image width="70" height="70" src="/favicon.ico" alt="Logo" />
+                <Link href="/">
+                  <a>
+                    <Image
+                      width="70"
+                      height="70"
+                      src="/favicon.ico"
+                      alt="Logo"
+                    />
+                  </a>
                 </Link>
               </div>
               <div>

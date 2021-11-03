@@ -11,6 +11,7 @@ type Settings = {
   responsive?: {}[];
   nextArrow?: any;
   prevArrow?: any;
+  centerMode?: boolean;
 };
 
 const Carousel = ({

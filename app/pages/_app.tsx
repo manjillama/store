@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         src="https://static.mailerlite.com/js/w/webforms.min.js?v0c75f831c56857441820dcec3163967c"
         type="text/javascript"
       ></Script>
-      <Script src="/script.js"></Script>
+      <Script src="/assets/script.js"></Script>
     </>
   );
 }

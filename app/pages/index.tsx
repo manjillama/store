@@ -30,7 +30,7 @@ const Home: NextPage = () => {
           <div className="banner-item">
             <Image
               layout="fill"
-              src="/banner/banner-1.webp"
+              src="/assets/banner/banner-1.webp"
               alt="Yatri Apparels"
               className="img-cover"
             />
@@ -46,7 +46,7 @@ const Home: NextPage = () => {
           <div className="banner-item">
             <Image
               layout="fill"
-              src="/banner/banner-2.webp"
+              src="/assets/banner/banner-2.webp"
               alt="Yatri Apparels"
               className="img-cover"
             />
@@ -63,7 +63,7 @@ const Home: NextPage = () => {
           <div className="banner-item">
             <Image
               layout="fill"
-              src="/banner/banner-3.webp"
+              src="/assets/banner/banner-3.webp"
               alt="Yatri Apparels"
               className="img-cover"
             />
@@ -115,7 +115,7 @@ const Home: NextPage = () => {
 
         <section>
           <img
-            src="/banner/banner-4.webp"
+            src="/assets/banner/banner-4.webp"
             alt="Apparels Banner"
             className="img-fluid"
           />

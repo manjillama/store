@@ -26,7 +26,7 @@ const Menu = ({
                 <img
                   alt="logo"
                   style={{ display: 'block', width: 144 }}
-                  src="/images/logo.png"
+                  src="/assets/logo.png"
                 />
               </a>
             </Link>
@@ -36,7 +36,7 @@ const Menu = ({
             >
               <img
                 src={`${
-                  theme === 'dark' ? '/images/close.svg' : '/images/close.png'
+                  theme === 'dark' ? '/assets/close.svg' : '/assets/close.png'
                 }`}
                 alt="Close button"
               />
