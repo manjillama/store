@@ -34,6 +34,14 @@ const Home: NextPage = () => {
               alt="Yatri Apparels"
               className="img-cover"
             />
+            <div className="caption container-l">
+              <h3>Must-have pieces you don&apos;t want to miss</h3>
+              <p>
+                Technical apparel, casual styles and endless accessories perfect
+                for two-wheel adventures and leisure looks too.
+              </p>
+              <button className="btn btn-primary">SHOP NOW</button>
+            </div>
           </div>
           <div className="banner-item">
             <Image
@@ -42,6 +50,15 @@ const Home: NextPage = () => {
               alt="Yatri Apparels"
               className="img-cover"
             />
+            <div className="caption container-l">
+              <h3>Safe and protected in all weather conditions</h3>
+              <p>
+                Discover our four-season suits, multi-layer jackets, and other
+                rainproof and windproof garments designed to keep you protected
+                and ensure maximum support in all weather conditions.
+              </p>
+              <button className="btn btn-primary">SHOP NOW</button>
+            </div>
           </div>
           <div className="banner-item">
             <Image
@@ -50,6 +67,11 @@ const Home: NextPage = () => {
               alt="Yatri Apparels"
               className="img-cover"
             />
+            <div className="caption container-l">
+              <h3>Leather jackets: protect yourself in style</h3>
+              <p>Like a second skin!</p>
+              <button className="btn btn-primary">SHOP NOW</button>
+            </div>
           </div>
         </Carousel>
       </header>
@@ -97,6 +119,51 @@ const Home: NextPage = () => {
             alt="Apparels Banner"
             className="img-fluid"
           />
+          <h2 className="section-title" style={{ marginTop: '0.5rem' }}>
+            Cheer for YATRI!
+          </h2>
+          <p style={{ margin: 0 }}>
+            Prepare to experience a whole host of emotions with the Ducati Team
+            in the range of Ducati Corse clothing. Racing colours and
+            contemporary designs: bring your best style to the track.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="section-title">Featured</h2>
+          <div className="carousel-card card">
+            <Carousel
+              settings={{
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                responsive: [
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2,
+                      initialSlide: 2,
+                    },
+                  },
+                ],
+                nextArrow: <SampleNextArrow />,
+                prevArrow: <SamplePrevArrow />,
+              }}
+            >
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+            </Carousel>
+          </div>
         </section>
       </main>
 

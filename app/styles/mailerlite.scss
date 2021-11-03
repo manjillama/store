@@ -2,10 +2,15 @@
 /**
 *
 */
+footer {
+  input {
+    border-color: #ccc;
+  }
+}
 footer.light {
   input {
     background: transparent;
-    border-color: #d9d9d9 !important;
+    border-color: #d9d9d9;
     color: #333 !important;
   }
   ::placeholder {
@@ -53,13 +58,6 @@ footer.light {
     font-size: 0.87rem !important;
     color: rgba(255, 255, 255, 0.8) !important;
     margin-right: 1rem !important;
-  }
-  input {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(255, 255, 255, 0.08) !important;
-    color: #828282 !important;
-    border-radius: 0 !important;
-    font-family: inherit !important;
   }
   button {
     border-radius: 0 !important;
@@ -410,7 +408,6 @@ footer.light {
   input {
   background-color: #fff !important;
   color: #333 !important;
-  border-color: #ccc;
   border-style: solid !important;
   border-width: 1px !important;
   font-size: 14px !important;

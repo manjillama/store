@@ -11,6 +11,7 @@ const Footer = ({
 }) => (
   <footer className={theme === 'light' ? 'light' : ''}>
     <div className="container-l">{!hideNewsletter && <Newsletter />}</div>
+    <br />
     <div className="footer container-l">
       <ul className="list-nostyle">
         <li>
@@ -29,7 +30,7 @@ const Footer = ({
         </li>
       </ul>
       <br />
-      <ul className="neutralize list-inline socials">
+      <ul className="list-nostyle list-inline socials">
         <li>
           <a
             title="Youtube"

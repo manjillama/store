@@ -7,3 +7,16 @@
   display: block;
   padding-bottom: 100%;
 }
+.item-info {
+  padding: 0.5rem 0;
+  .i-title,
+  .i-price {
+    font-size: 0.89rem;
+    font-weight: 500;
+    line-height: 1.3rem;
+  }
+  .i-price {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+}

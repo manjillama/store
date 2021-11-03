@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import Navbar from '../component/navbar';
 import '../styles/index.scss';
 
@@ -43,6 +44,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Navbar />
       <Component {...pageProps} />
+      <Script
+        src="https://static.mailerlite.com/js/w/webforms.min.js?v0c75f831c56857441820dcec3163967c"
+        type="text/javascript"
+      ></Script>
+      <Script src="/script.js"></Script>
     </>
   );
 }
