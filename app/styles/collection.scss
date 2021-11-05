@@ -1,0 +1,12 @@
+.collection-page {
+  .collection {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -3px;
+    .item-card {
+      width: 33.33%;
+      padding: 3px;
+      margin-bottom: 2rem;
+    }
+  }
+}

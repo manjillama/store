@@ -3,6 +3,7 @@
 @import './navbar.scss';
 @import './item-card.scss';
 @import './product.scss';
+@import './collection.scss';
 @import './mailerlite.scss';
 
 * {
@@ -295,6 +296,10 @@ ul {
 .section-title {
   text-transform: uppercase;
   font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+.nav-offset {
+  margin-top: 7rem !important;
 }
 .img-cover {
   height: 100%;
@@ -529,11 +534,13 @@ ul {
 * 
 */
 .carousel-card {
+  margin-left: -4px;
+  margin-right: -4px;
   .item {
-    margin: 0.2rem;
-    .item-image {
-      background-color: #f2f2f2;
-    }
+    margin: 0 4px;
+    // .item-image {
+    //   background-color: #f2f2f2;
+    // }
   }
 }
 /**

@@ -41,5 +41,55 @@ export default function handler(
       Front kangaroo pocket
       Regular fit`,
     },
+    {
+      id: '2',
+      name: 'LOGO LEVEL 1 CROWN HOODIE',
+      sizes: [
+        { size: 'S', stock: 0 },
+        { size: 'M', stock: 0 },
+        { size: 'L', stock: 0 },
+      ],
+      images: [
+        '/assets/product/product-2.webp',
+        '/assets/product/product-3.webp',
+        '/assets/product/product-4.webp',
+      ],
+      price: 1500,
+      comparePrice: 1800,
+      description: `
+      Our comfortable pullover hoodie with a famous MV Agusta crown logo on the chest and a big one on the back. Features a spacious front kangaroo pocket. Crafted from premium cotton. Pair with LL1 matching sweatpants and you’re good to go.
+
+      Adjustable hood
+      Ribbed cuffs and hem
+      Small printed MV Agusta crown logo on the chest
+      Big printed MV Agusta crown logo on the back
+      Front kangaroo pocket
+      Regular fit`,
+    },
+    {
+      id: '3',
+      name: 'LOGO LEVEL 1 CROWN HOODIE',
+      sizes: [
+        { size: 'S', stock: 2 },
+        { size: 'M', stock: 0 },
+        { size: 'L', stock: 0 },
+      ],
+      images: [
+        '/assets/product/product-2.webp',
+        '/assets/product/product-3.webp',
+        '/assets/product/product-4.webp',
+      ],
+      price: 1500,
+      comparePrice: 1800,
+      description: `
+      Our comfortable pullover hoodie with a famous MV Agusta crown logo on the chest and a big one on the back. Features a spacious front kangaroo pocket. Crafted from premium cotton. Pair with LL1 matching sweatpants and you’re good to go.
+
+      Adjustable hood
+      Ribbed cuffs and hem
+      Small printed MV Agusta crown logo on the chest
+      Big printed MV Agusta crown logo on the back
+      Front kangaroo pocket
+      Regular fit`,
+    },
   ]);
 }

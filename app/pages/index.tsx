@@ -119,7 +119,7 @@ const Home: NextPage = () => {
             alt="Apparels Banner"
             className="img-fluid"
           />
-          <h2 className="section-title" style={{ marginTop: '0.5rem' }}>
+          <h2 className="section-title" style={{ marginTop: '1rem' }}>
             Cheer for YATRI!
           </h2>
           <p style={{ margin: 0 }}>

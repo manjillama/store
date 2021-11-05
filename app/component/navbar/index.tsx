@@ -44,13 +44,15 @@ const Navbar = () => {
                     </button>
                   </li>
                   <li className="hide-xl">
-                    <Link href="">Motorcycles Clothes</Link>
+                    <a href="/collections/motorcycles-clothes">
+                      Motorcycles Clothes
+                    </a>
                   </li>
                   <li className="hide-xl">
-                    <Link href="">Casual Clothes</Link>
+                    <a href="/collections/casual-clothes">Casual Clothes</a>
                   </li>
                   <li className="hide-xl">
-                    <Link href="">Accessories</Link>
+                    <a href="/collections/accessories">Accessories</a>
                   </li>
                 </ul>
               </div>
@@ -76,18 +78,22 @@ const Navbar = () => {
               </div>
               <div>
                 <ul className="list-nostyle list-inline">
+                  <li className="hide-xl">
+                    <Link href="/experience-center">Experience Center</Link>
+                  </li>
+
+                  <li>
+                    <a>
+                      <i className="fas fa-shopping-cart"></i>
+                    </a>
+                  </li>
                   <li>
                     <button
                       onClick={handleSearchOpened}
                       className="btn-chromeless"
                     >
-                      <a>
-                        <i className="fas fa-search"></i>
-                      </a>
+                      <i className="fas fa-search"></i>
                     </button>
-                  </li>
-                  <li className="hide-xl">
-                    <Link href="/experience-center">Experience Center</Link>
                   </li>
                 </ul>
               </div>

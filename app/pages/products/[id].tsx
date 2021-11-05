@@ -1,93 +1,52 @@
 /* eslint-disable jsx-a11y/alt-text, @next/next/no-img-element */
-import { GetStaticPropsContext, NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { GetStaticPropsContext } from 'next';
+import { useEffect, useState, useRef } from 'react';
+import Link from 'next/link';
 import ReactImageMagnify from 'react-image-magnify';
 import Slider from 'react-slick';
+import Carousel from '../../component/carousel';
+import SampleNextArrow from '../../component/carousel/SampleNextArrow';
+import SamplePrevArrow from '../../component/carousel/SamplePrevArrow';
 import Footer from '../../component/footer';
+import ItemCard from '../../component/item-card';
+import PageHead from '../../component/page-head';
 
 const Product = ({ product }: { product: any }) => {
-  let slider: any;
   const { id, name, sizes, price, comparePrice, description, images } = product;
 
   const [submitting, setSubmitting] = useState(false);
   const [cartError, setCartError] = useState('');
   const [selection, setSelection] = useState<{ size?: string }>({ size: '' });
+  const slider = useRef<any>(null);
 
   useEffect(() => {
     const descElem = document.getElementById('productDetail');
     if (descElem) descElem.innerHTML = description;
   }, []);
 
-  const ImageMagnify = () => {
-    var settings = {
-      dots: true,
-      arrows: false,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
-    return (
-      <Slider ref={(sli: any) => (slider = sli)} {...settings}>
-        {images.map((src: string, index: number) => (
-          <div key={index}>
-            <ReactImageMagnify
-              className="img-magnify"
-              {...{
-                smallImage: {
-                  alt: `${name} ${index}`,
-                  isFluidWidth: true,
-                  src: src,
-                },
-                largeImage: {
-                  src: src,
-                  width: 870,
-                  height: 1110,
-                },
-                enlargedImagePosition: 'over',
-                hoverDelayInMs: 50,
-                hoverOffDelayInMs: 50,
-                fadeDurationInMs: 150,
-                pressDuration: 200,
-              }}
-            />
-          </div>
-        ))}
-      </Slider>
-    );
-  };
-
   function RenderCartButton({ onAddToCart, submitting }: any) {
     /*
     Returns true if all stocks is less than or equal to zero
     */
     const outOfStock = sizes.every((size: any) => size.stock <= 0);
-    if (outOfStock) {
-      return (
-        <button className="btn btn-default add-item text-muted">
-          OUT OF STOCK
-        </button>
-      );
-    } else {
-      return (
-        <button
-          className="btn btn-primary add-item p-l"
-          onClick={onAddToCart}
-          disabled={submitting}
-        >
-          {submitting && (
-            <div
-              className="spi spi-light"
-              style={{ position: 'absolute' }}
-            ></div>
-          )}
-          ADD TO BAG
-        </button>
-      );
-    }
+
+    return (
+      <button
+        className="btn btn-primary add-item p-l"
+        onClick={onAddToCart}
+        disabled={outOfStock || submitting}
+        style={{ paddingLeft: '3rem', paddingRight: '3rem' }}
+      >
+        {submitting && (
+          <div className="spi spi-light" style={{ position: 'absolute' }}></div>
+        )}
+        {outOfStock ? 'OUT OF STOCK' : 'ADD TO BAG'}
+      </button>
+    );
   }
 
   const onThumbImageClick = (index: number) => {
-    slider.slickGoTo(index);
+    slider?.current?.slickGoTo(index);
   };
 
   const RenderProductPrice = () => {
@@ -106,6 +65,7 @@ const Product = ({ product }: { product: any }) => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    e.preventDefault();
     const { value, name } = e.target;
     setSelection({ ...selection, [name]: value });
   };
@@ -122,13 +82,14 @@ const Product = ({ product }: { product: any }) => {
 
   return (
     <>
-      <div className="product-view container-l">
-        <div className="layout-width">
+      <PageHead
+        title={`${name} | Yatri Motorcycles Store`}
+        description={description}
+      ></PageHead>
+      <div className="product-page container-l nav-offset">
+        <div className="product-layout">
           <div className="gallery-content-wrapper">
             <div className="product-gallery">
-              <div className="product-carousel">
-                <ImageMagnify />
-              </div>
               <ul className="thumbnails list-nostyle">
                 {images.map((src: string, index: number) => (
                   <li className="image-thumbnail" key={index}>
@@ -141,6 +102,9 @@ const Product = ({ product }: { product: any }) => {
                   </li>
                 ))}
               </ul>
+              <div className="product-carousel">
+                <ImageMagnify slider={slider} images={images} />
+              </div>
             </div>
           </div>
           <div className="aside-content">
@@ -149,9 +113,11 @@ const Product = ({ product }: { product: any }) => {
             </div>
             <div className="product-price">
               {<RenderProductPrice />}
-              <button className="btn-chromeless product-delivery">
-                Delivery and returns info
-              </button>
+              <Link href="/">
+                <a className="btn-chromeless product-delivery">
+                  <small>Delivery and returns info</small>
+                </a>
+              </Link>
             </div>
             {sizes[0] && (
               <div className={`product-size p-l`}>
@@ -199,11 +165,85 @@ const Product = ({ product }: { product: any }) => {
             </div>
           </div>
         </div>
+        <section>
+          <h2 className="section-title">Recommended</h2>
+          <div className="carousel-card card">
+            <Carousel
+              settings={{
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                responsive: [
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2,
+                      initialSlide: 2,
+                    },
+                  },
+                ],
+                nextArrow: <SampleNextArrow />,
+                prevArrow: <SamplePrevArrow />,
+              }}
+            >
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+            </Carousel>
+          </div>
+        </section>
       </div>
+
       <Footer theme="dark" />
     </>
   );
 };
+
+function ImageMagnify({ slider, images }: any) {
+  var settings = {
+    dots: true,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  return (
+    <Slider ref={slider} {...settings}>
+      {images.map((src: string, index: number) => (
+        <div key={index}>
+          <ReactImageMagnify
+            className="img-magnify"
+            {...{
+              smallImage: {
+                isFluidWidth: true,
+                src: src,
+              },
+              largeImage: {
+                src: src,
+                width: 870,
+                height: 1110,
+              },
+              enlargedImagePosition: 'over',
+              hoverDelayInMs: 50,
+              hoverOffDelayInMs: 50,
+              fadeDurationInMs: 150,
+              pressDuration: 200,
+            }}
+          />
+        </div>
+      ))}
+    </Slider>
+  );
+}
 
 export async function getStaticPaths() {
   return {
