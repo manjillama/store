@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 import { searchProducts } from '../../api/products';
 import Footer from '../../component/footer';
 import ItemCard from '../../component/item-card';
+import PageHead from '../../component/page-head';
 import { IProduct } from '../../interface';
 
 const Search = ({
@@ -20,12 +21,24 @@ const Search = ({
       ));
     else
       return (
-        <p className="text-muted">Sorry, nothing matches your search! :(</p>
+        <div>
+          <p className="text-muted">Sorry, nothing matches your search! :(</p>
+          <p>
+            <small>
+              But don&apos;t give up – check the spelling or try less specific
+              search terms.
+            </small>
+          </p>
+        </div>
       );
   };
 
   return (
     <>
+      <PageHead
+        title={`${params.q} | Yatri Motorcycles Official Apparel Store`}
+        description="Yatri Motorcycles online store: clothing, helmets, accessories and merchandising by Yatri Motorcycles."
+      ></PageHead>
       <div className="collection-page container-l nav-offset">
         <section>
           <h2 className="section-title">

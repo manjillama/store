@@ -151,10 +151,23 @@ const Product = ({ product }: { product: IProduct }) => {
               </div>
             )}
             <div className="product-add">
-              <RenderCartButton
+              {/* <RenderCartButton
                 onAddToCart={onAddToCart}
                 submitting={submitting}
-              />
+              /> */}
+              <small
+                className="alert p-l"
+                style={{ backgroundColor: '#FAE7EC', fontSize: '0.7rem' }}
+              >
+                <i className="fas fa-info-circle"></i> We're still working on
+                our e-store. To make an order please visit our{' '}
+                <Link href="/experience-center">
+                  <a style={{ textDecoration: 'underline' }}>
+                    experience center
+                  </a>
+                </Link>
+                . We'll be thrilled to have you visit us!
+              </small>
               {cartError && (
                 <small
                   className="alert p-l"

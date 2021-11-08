@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getProducts } from '../api/products';
 import Carousel from '../component/carousel';
@@ -22,7 +23,7 @@ const Home: NextPage = () => {
         <Carousel
           settings={{
             dots: true,
-            fade: true,
+            // fade: true,
             infinite: true,
             autoplay: true,
             speed: 500,
@@ -43,7 +44,9 @@ const Home: NextPage = () => {
                 Technical apparel, casual styles and endless accessories perfect
                 for two-wheel adventures and leisure looks too.
               </p>
-              <button className="btn btn-primary">SHOP NOW</button>
+              <Link href="/collections/motorcycle-clothes">
+                <a className="btn btn-primary">SHOP NOW</a>
+              </Link>
             </div>
           </div>
           <div className="banner-item">
@@ -60,7 +63,9 @@ const Home: NextPage = () => {
                 rainproof and windproof garments designed to keep you protected
                 and ensure maximum support in all weather conditions.
               </p>
-              <button className="btn btn-primary">SHOP NOW</button>
+              <Link href="/collections/accessories">
+                <a className="btn btn-primary">SHOP NOW</a>
+              </Link>
             </div>
           </div>
           <div className="banner-item">
@@ -73,7 +78,9 @@ const Home: NextPage = () => {
             <div className="caption container-l">
               <h3>Leather jackets: protect yourself in style</h3>
               <p>Like a second skin!</p>
-              <button className="btn btn-primary">SHOP NOW</button>
+              <Link href="/collections/jackets">
+                <a className="btn btn-primary">SHOP NOW</a>
+              </Link>
             </div>
           </div>
         </Carousel>
