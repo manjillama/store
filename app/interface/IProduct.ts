@@ -19,6 +19,9 @@ export interface IProduct {
   comparePrice: number;
   slug: string;
   id: number;
+  brand: {
+    name: string;
+  };
   description: string;
   isFeatured: boolean;
   sizes: {

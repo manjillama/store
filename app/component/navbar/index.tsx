@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -67,12 +68,7 @@ const Navbar = () => {
               >
                 <Link href="/">
                   <a>
-                    <Image
-                      width="70"
-                      height="70"
-                      src="/favicon.ico"
-                      alt="Logo"
-                    />
+                    <img width="70" src="/assets/logo.png" alt="Logo" />
                   </a>
                 </Link>
               </div>
@@ -83,9 +79,9 @@ const Navbar = () => {
                   </li>
 
                   <li>
-                    <a>
+                    <button className="btn-chromeless" disabled>
                       <i className="fas fa-shopping-cart"></i>
-                    </a>
+                    </button>
                   </li>
                   <li>
                     <button
