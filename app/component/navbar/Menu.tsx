@@ -45,15 +45,13 @@ const Menu = ({
           <div className="menu-body">
             <ul className="list-nostyle">
               <li>
-                <Link href="/collections/motorcycles-clothes">
-                  Motorcycles Clothes
-                </Link>
+                <a href="/collections/motorcycle-clothes">Motorcycle Clothes</a>
               </li>
               <li>
-                <Link href="/collections/casual-clothes">Casual Clothes</Link>
+                <a href="/collections/casual-clothes">Casual Clothes</a>
               </li>
               <li>
-                <Link href="/collections/accesories">Accessories</Link>
+                <a href="/collections/accesories">Accessories</a>
               </li>
             </ul>
             <ul className="list-nostyle">

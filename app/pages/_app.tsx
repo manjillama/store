@@ -42,8 +42,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </Head>
-      <Navbar />
-      <Component {...pageProps} />
+      <div className="my-app">
+        <Navbar />
+        <Component {...pageProps} />
+      </div>
       <Script
         src="https://static.mailerlite.com/js/w/webforms.min.js?v0c75f831c56857441820dcec3163967c"
         type="text/javascript"

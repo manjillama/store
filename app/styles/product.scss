@@ -82,23 +82,6 @@
         max-width: 90%;
       }
       .product-price {
-        span {
-          font-size: 20px;
-          line-height: 1.1;
-          font-style: normal;
-          font-weight: 700;
-          color: #555;
-          padding-right: 5px;
-          &.pr-sp {
-            color: #d01345;
-          }
-          &.pr-cp {
-            text-decoration: line-through;
-            font-size: 14px;
-            color: #333;
-            font-weight: 400;
-          }
-        }
         .product-delivery {
           margin-top: 8px;
           font-size: 14px;
@@ -185,6 +168,9 @@
         }
         ul {
           padding-left: 18px;
+        }
+        #productDetail {
+          white-space: pre-line;
         }
       }
     }

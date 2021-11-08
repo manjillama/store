@@ -31,10 +31,13 @@ body {
   font-weight: 400;
   margin: 0;
   letter-spacing: 0.05rem;
-  background-color: #fff;
+  background-color: #0f0f0f;
   color: #131415;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+}
+.my-app {
+  background-color: #fff;
 }
 h1,
 h2,
@@ -299,7 +302,7 @@ ul {
   margin-bottom: 1rem;
 }
 .nav-offset {
-  margin-top: 7rem !important;
+  padding-top: 7rem !important;
 }
 .img-cover {
   height: 100%;
@@ -531,16 +534,33 @@ ul {
   }
 }
 /**
-* 
+* Product price
+*/
+.p-price {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  font-style: normal;
+  font-weight: 600;
+  color: #555;
+  padding-right: 5px;
+  &.pr-sp {
+    color: #d01345;
+  }
+  &.pr-cp {
+    text-decoration: line-through;
+    font-size: 0.85rem;
+    color: #333;
+    font-weight: 400;
+  }
+}
+/**
+* Carousel card
 */
 .carousel-card {
   margin-left: -4px;
   margin-right: -4px;
   .item {
     margin: 0 4px;
-    // .item-image {
-    //   background-color: #f2f2f2;
-    // }
   }
 }
 /**
@@ -550,6 +570,7 @@ ul {
   outline: none;
 }
 .slick-dots {
+  bottom: -35px;
   li button:before {
     font-size: 14px;
   }

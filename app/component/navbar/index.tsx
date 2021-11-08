@@ -44,8 +44,8 @@ const Navbar = () => {
                     </button>
                   </li>
                   <li className="hide-xl">
-                    <a href="/collections/motorcycles-clothes">
-                      Motorcycles Clothes
+                    <a href="/collections/motorcycle-clothes">
+                      Motorcycle Clothes
                     </a>
                   </li>
                   <li className="hide-xl">
@@ -99,8 +99,9 @@ const Navbar = () => {
               </div>
             </div>
             <div className="search-box">
-              <form style={{ height: '100%' }}>
+              <form action="/search" method="GET" style={{ height: '100%' }}>
                 <input
+                  name="q"
                   placeholder="SEARCH"
                   id="search-input"
                   autoComplete="off"

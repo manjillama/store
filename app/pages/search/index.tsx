@@ -1,20 +1,16 @@
 import { GetServerSidePropsContext } from 'next';
-import { getProducts } from '../../api/products';
+import { searchProducts } from '../../api/products';
 import Footer from '../../component/footer';
 import ItemCard from '../../component/item-card';
-import PageHead from '../../component/page-head';
 import { IProduct } from '../../interface';
-import { slugToString } from '../../utils';
 
-const Product = ({
+const Search = ({
   params,
   products,
 }: {
   params: any;
   products: IProduct[];
 }) => {
-  const collection = slugToString(params.collection);
-
   const renderProductList = () => {
     if (products.length > 0)
       return products.map((product) => (
@@ -24,49 +20,40 @@ const Product = ({
       ));
     else
       return (
-        <p className="text-muted">
-          Sorry, no products in this collection yet! :(
-        </p>
+        <p className="text-muted">Sorry, nothing matches your search! :(</p>
       );
   };
 
   return (
     <>
-      <PageHead
-        title={`${collection} | Yatri Motorcycles Store`}
-        description={collection}
-      ></PageHead>
       <div className="collection-page container-l nav-offset">
         <section>
-          <h2 className="section-title">{collection}</h2>
+          <h2 className="section-title">
+            Searched result for &apos;{params.q}&apos;
+          </h2>
           <div className="collection">{renderProductList()}</div>
         </section>
       </div>
-
       <Footer theme="dark" />
     </>
   );
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const queryParams = {
-    ...context.query,
-    'collections.slug': context?.params?.collection,
-  } as any;
+  try {
+    const { q } = context.query;
+    if (!q) throw new Error('No search term present');
 
-  delete queryParams.collection;
+    const { data } = await searchProducts(q as string);
 
-  const { data } = await getProducts(queryParams);
-
-  if (!data) {
+    return {
+      props: { params: context.query, products: data }, // will be passed to the page component as props
+    };
+  } catch (error) {
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { params: context.params, products: data }, // will be passed to the page component as props
-  };
 }
 
-export default Product;
+export default Search;

@@ -1,12 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { getProducts } from '../api/products';
 import Carousel from '../component/carousel';
 import SampleNextArrow from '../component/carousel/SampleNextArrow';
 import SamplePrevArrow from '../component/carousel/SamplePrevArrow';
 import Footer from '../component/footer';
 import ItemCard from '../component/item-card';
 import PageHead from '../component/page-head';
+import { IProduct } from '../interface';
 
 const Home: NextPage = () => {
   return (
@@ -76,42 +79,7 @@ const Home: NextPage = () => {
         </Carousel>
       </header>
       <main className="container-l">
-        <section>
-          <h2 className="section-title">New In</h2>
-          <div className="carousel-card card">
-            <Carousel
-              settings={{
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                responsive: [
-                  {
-                    breakpoint: 600,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 2,
-                      initialSlide: 2,
-                    },
-                  },
-                ],
-                nextArrow: <SampleNextArrow />,
-                prevArrow: <SamplePrevArrow />,
-              }}
-            >
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-            </Carousel>
-          </div>
-        </section>
+        <NewIn />
 
         <section>
           <img
@@ -129,47 +97,122 @@ const Home: NextPage = () => {
           </p>
         </section>
 
-        <section>
-          <h2 className="section-title">Featured</h2>
-          <div className="carousel-card card">
-            <Carousel
-              settings={{
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                responsive: [
-                  {
-                    breakpoint: 600,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 2,
-                      initialSlide: 2,
-                    },
-                  },
-                ],
-                nextArrow: <SampleNextArrow />,
-                prevArrow: <SamplePrevArrow />,
-              }}
-            >
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-            </Carousel>
-          </div>
-        </section>
+        <Featured />
       </main>
 
       <Footer theme="dark" />
     </div>
   );
 };
+
+function NewIn() {
+  const [products, setProducts] = useState<IProduct[] | null>(null);
+  // products?created_at_gte=2021-08-07
+  useEffect(() => {
+    async function fetchData() {
+      const today = new Date();
+      today.setMonth(today.getMonth() - 3);
+      const year = today.getUTCFullYear();
+      const month = today.getUTCMonth().toString().padStart(2, '0');
+      const day = today.getUTCDate().toString().padStart(2, '0');
+
+      const { data } = await getProducts({
+        created_at_gte: `${year}-${month}-${day}`,
+        _limit: 12,
+      });
+      setProducts(data);
+    }
+    fetchData();
+  }, []);
+
+  if (!products) return <p>Loading...</p>;
+
+  if (products.length < 3) return null;
+  return (
+    <section>
+      <h2 className="section-title">New In</h2>
+      <div className="carousel-card card">
+        <Carousel
+          settings={{
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                  initialSlide: 2,
+                },
+              },
+            ],
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+          }}
+        >
+          {products.map((product) => (
+            <ItemCard key={product.id} product={product} />
+          ))}
+        </Carousel>
+      </div>
+    </section>
+  );
+}
+
+function Featured() {
+  const [products, setProducts] = useState<IProduct[] | null>(null);
+  // products?_sort=created_at:DESC&isFeatured=true
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await getProducts({
+        _sort: `created_at:DESC`,
+        isFeatured: true,
+        _limit: 12,
+      });
+      setProducts(data);
+    }
+    fetchData();
+  }, []);
+
+  if (!products) return <p>Loading...</p>;
+
+  if (products.length < 3) return null;
+  return (
+    <section>
+      <h2 className="section-title">Featured</h2>
+      <div className="carousel-card card">
+        <Carousel
+          settings={{
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                  initialSlide: 2,
+                },
+              },
+            ],
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+          }}
+        >
+          {products.map((product) => (
+            <ItemCard key={product.id} product={product} />
+          ))}
+        </Carousel>
+      </div>
+    </section>
+  );
+}
 
 export default Home;

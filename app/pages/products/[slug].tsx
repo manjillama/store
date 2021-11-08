@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text, @next/next/no-img-element */
-import { GetStaticPropsContext } from 'next';
+import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState, useRef } from 'react';
+import qs from 'qs';
 import Link from 'next/link';
 import ReactImageMagnify from 'react-image-magnify';
 import Slider from 'react-slick';
@@ -10,9 +11,21 @@ import SamplePrevArrow from '../../component/carousel/SamplePrevArrow';
 import Footer from '../../component/footer';
 import ItemCard from '../../component/item-card';
 import PageHead from '../../component/page-head';
+import { getProductBySlug, getProducts } from '../../api/products';
+import { IProduct, productImageType } from '../../interface';
+import { RenderProductPrice } from '../../component/commons';
 
-const Product = ({ product }: { product: any }) => {
-  const { id, name, sizes, price, comparePrice, description, images } = product;
+const Product = ({ product }: { product: IProduct }) => {
+  const {
+    id,
+    name,
+    sizes,
+    price,
+    comparePrice,
+    description,
+    images,
+    collections,
+  } = product;
 
   const [submitting, setSubmitting] = useState(false);
   const [cartError, setCartError] = useState('');
@@ -28,7 +41,8 @@ const Product = ({ product }: { product: any }) => {
     /*
     Returns true if all stocks is less than or equal to zero
     */
-    const outOfStock = sizes.every((size: any) => size.stock <= 0);
+    const outOfStock =
+      sizes.length > 0 && sizes.every((size: any) => size.stock <= 0);
 
     return (
       <button
@@ -47,19 +61,6 @@ const Product = ({ product }: { product: any }) => {
 
   const onThumbImageClick = (index: number) => {
     slider?.current?.slickGoTo(index);
-  };
-
-  const RenderProductPrice = () => {
-    if (comparePrice > price) {
-      return (
-        <p>
-          <span className="pr-sp"> Rs. {price}</span>
-          <span className="pr-cp">Rs. {comparePrice}</span>
-        </p>
-      );
-    } else {
-      return <span className="current-price">Rs. {price}</span>;
-    }
   };
 
   const handleChange = (
@@ -91,16 +92,26 @@ const Product = ({ product }: { product: any }) => {
           <div className="gallery-content-wrapper">
             <div className="product-gallery">
               <ul className="thumbnails list-nostyle">
-                {images.map((src: string, index: number) => (
-                  <li className="image-thumbnail" key={index}>
-                    <img
-                      className="img-fluid"
-                      src={src}
-                      tabIndex={0}
-                      onClick={() => onThumbImageClick(index)}
-                    />
-                  </li>
-                ))}
+                {images.map(
+                  (
+                    {
+                      id,
+                      formats: {
+                        thumbnail: { url },
+                      },
+                    },
+                    index
+                  ) => (
+                    <li className="image-thumbnail" key={id}>
+                      <img
+                        className="img-fluid"
+                        src={url}
+                        tabIndex={0}
+                        onClick={() => onThumbImageClick(index)}
+                      />
+                    </li>
+                  )
+                )}
               </ul>
               <div className="product-carousel">
                 <ImageMagnify slider={slider} images={images} />
@@ -112,7 +123,7 @@ const Product = ({ product }: { product: any }) => {
               <h1>{product.name}</h1>
             </div>
             <div className="product-price">
-              {<RenderProductPrice />}
+              <RenderProductPrice price={price} comparePrice={comparePrice} />
               <Link href="/">
                 <a className="btn-chromeless product-delivery">
                   <small>Delivery and returns info</small>
@@ -165,42 +176,9 @@ const Product = ({ product }: { product: any }) => {
             </div>
           </div>
         </div>
-        <section>
-          <h2 className="section-title">Recommended</h2>
-          <div className="carousel-card card">
-            <Carousel
-              settings={{
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                responsive: [
-                  {
-                    breakpoint: 600,
-                    settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 2,
-                      initialSlide: 2,
-                    },
-                  },
-                ],
-                nextArrow: <SampleNextArrow />,
-                prevArrow: <SamplePrevArrow />,
-              }}
-            >
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-            </Carousel>
-          </div>
-        </section>
+        <Recommended
+          collectionSlugs={collections.map((collection) => collection.slug)}
+        />
       </div>
 
       <Footer theme="dark" />
@@ -208,7 +186,13 @@ const Product = ({ product }: { product: any }) => {
   );
 };
 
-function ImageMagnify({ slider, images }: any) {
+function ImageMagnify({
+  slider,
+  images,
+}: {
+  slider: any;
+  images: productImageType[];
+}) {
   var settings = {
     dots: true,
     arrows: false,
@@ -218,17 +202,17 @@ function ImageMagnify({ slider, images }: any) {
   };
   return (
     <Slider ref={slider} {...settings}>
-      {images.map((src: string, index: number) => (
+      {images.map(({ url }, index) => (
         <div key={index}>
           <ReactImageMagnify
             className="img-magnify"
             {...{
               smallImage: {
                 isFluidWidth: true,
-                src: src,
+                src: url,
               },
               largeImage: {
-                src: src,
+                src: url,
                 width: 870,
                 height: 1110,
               },
@@ -245,27 +229,73 @@ function ImageMagnify({ slider, images }: any) {
   );
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [], //indicates that no page needs be created at build time
-    fallback: 'blocking', //indicates the type of fallback
-  };
+function Recommended({ collectionSlugs }: { collectionSlugs: string[] }) {
+  const [products, setProducts] = useState<IProduct[] | null>(null);
+  // products?_where[_or][0][collections.slug]=casual-clothes&_where[_or][1][collections.slug]=hoodies-sweatshirts
+
+  const query = qs.stringify({
+    _where: {
+      _or: collectionSlugs.map((slug) => ({ 'collections.slug': slug })),
+    },
+  });
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await getProducts({}, `?${query}`);
+      setProducts(data);
+    }
+    fetchData();
+  }, []);
+
+  if (!products) return <p>Loading...</p>;
+
+  if (products.length < 3) return null;
+
+  return (
+    <section>
+      <h2 className="section-title">Recommended</h2>
+      <div className="carousel-card card">
+        <Carousel
+          settings={{
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                  initialSlide: 2,
+                },
+              },
+            ],
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />,
+          }}
+        >
+          {products.map((product) => (
+            <ItemCard key={product.id} product={product} />
+          ))}
+        </Carousel>
+      </div>
+    </section>
+  );
 }
 
-export async function getStaticProps(context: GetStaticPropsContext) {
-  const res = await fetch(`http://localhost:3005/api/products`);
-  const products = await res.json();
-  const product = products.find((p: any) => p.id === context.params?.id);
-
-  if (!product) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  try {
+    const { data } = await getProductBySlug(context.params?.slug as string);
+    return {
+      props: { product: data }, // will be passed to the page component as props
+    };
+  } catch (error) {
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { product }, // will be passed to the page component as props
-  };
 }
 
 export default Product;
