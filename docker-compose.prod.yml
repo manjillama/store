@@ -15,7 +15,5 @@ services:
       dockerfile: Dockerfile
     image: yatrimotorcycles/yatristore-strapi-api:v1
     restart: always
-    env_file:
-      - .env
     ports:
       - '3006:3006'
