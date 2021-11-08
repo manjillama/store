@@ -24,6 +24,7 @@ const Product = ({ product }: { product: IProduct }) => {
     comparePrice,
     description,
     images,
+    brand,
     collections,
   } = product;
 
@@ -124,7 +125,7 @@ const Product = ({ product }: { product: IProduct }) => {
             </div>
             <div className="product-price">
               <RenderProductPrice price={price} comparePrice={comparePrice} />
-              <Link href="/">
+              <Link href="#">
                 <a className="btn-chromeless product-delivery">
                   <small>Delivery and returns info</small>
                 </a>
@@ -177,6 +178,10 @@ const Product = ({ product }: { product: IProduct }) => {
                 </small>
               )}
               <div className="p-detail">
+                <div>
+                  <h2>Brand</h2>
+                  {brand?.name || '-'}
+                </div>
                 <div>
                   <h2>Product Details</h2>
                   <div id="productDetail"></div>

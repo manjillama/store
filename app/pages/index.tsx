@@ -98,9 +98,9 @@ const Home: NextPage = () => {
             Cheer for YATRI!
           </h2>
           <p style={{ margin: 0 }}>
-            Prepare to experience a whole host of emotions with the Ducati Team
-            in the range of Ducati Corse clothing. Racing colours and
-            contemporary designs: bring your best style to the track.
+            Prepare to experience a whole host of emotions with the Yatri Team
+            in the range of Yatri P1 clothing. Signature Yatri turquoise colours
+            and contemporary designs: bring your best style to the track.
           </p>
         </section>
 
