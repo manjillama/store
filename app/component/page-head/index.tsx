@@ -3,7 +3,7 @@ import Head from 'next/head';
 const PageHead = ({
   title,
   description,
-  image = 'https://d3j42yg2io56tq.cloudfront.net/mustang1.jpg',
+  image = 'https://s3.ap-south-1.amazonaws.com/yatri.static/ec.jpg',
   noIndex,
 }: {
   title: string;
