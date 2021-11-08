@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_size_product_sizes",
+  "info": {
+    "name": "Product Size",
+    "icon": "bullseye"
+  },
+  "options": {},
+  "attributes": {
+    "size": {
+      "type": "string",
+      "required": true
+    },
+    "stock": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    }
+  }
+}
