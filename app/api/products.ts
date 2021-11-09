@@ -19,7 +19,13 @@ export const getProducts = (
 
 export const searchProducts = (q: string) => {
   const query = qs.stringify({
-    _where: { _or: [{ name_contains: q }, { 'collections.name_contains': q }] },
+    _where: {
+      _or: [
+        { name_contains: q },
+        { 'collections.name_contains': q },
+        { 'brand.name_contains': q },
+      ],
+    },
   });
   return get(`/products?${query}`);
 };

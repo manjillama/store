@@ -20,13 +20,13 @@ const Footer = ({
           </Link>
         </li>
         <li>
-          <Link href="">Terms of Sale</Link>
+          <Link href="/policies/terms-of-service">Terms &amp; Conditions</Link>
         </li>
         <li>
           <Link href="/careers">Contact</Link>
         </li>
         <li>
-          <Link href="/legal">Returns and Refunds</Link>
+          <Link href="/policies/delivery-returns">Delivery &amp; Returns</Link>
         </li>
       </ul>
       <br />

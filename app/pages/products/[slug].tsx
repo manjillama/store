@@ -125,11 +125,6 @@ const Product = ({ product }: { product: IProduct }) => {
             </div>
             <div className="product-price">
               <RenderProductPrice price={price} comparePrice={comparePrice} />
-              <Link href="#">
-                <a className="btn-chromeless product-delivery">
-                  <small>Delivery and returns info</small>
-                </a>
-              </Link>
             </div>
             {sizes[0] && (
               <div className={`product-size p-l`}>
@@ -177,6 +172,11 @@ const Product = ({ product }: { product: IProduct }) => {
                   {cartError}
                 </small>
               )}
+              <Link href="#">
+                <a className="btn-chromeless product-delivery">
+                  <small>Delivery and returns info</small>
+                </a>
+              </Link>
               <div className="p-detail">
                 <div>
                   <h2>Brand</h2>

@@ -74,20 +74,18 @@
       margin-bottom: 2em;
       .product-hero h1 {
         margin-top: 2rem;
-        font-weight: 500;
-        font-size: 18px;
+        font-weight: 400;
+        font-size: 1.2rem;
         letter-spacing: 2.8px;
         line-height: 1.4;
         letter-spacing: 1.3px;
         max-width: 90%;
       }
-      .product-price {
-        .product-delivery {
-          margin-top: 8px;
-          font-size: 14px;
-          border-bottom: 1px solid #999;
-          color: #2d2d2d;
-        }
+      .product-delivery {
+        margin-top: 8px;
+        font-size: 14px;
+        border-bottom: 1px solid #999;
+        color: #2d2d2d;
       }
       .p-l {
         margin-top: 20px;
@@ -104,9 +102,9 @@
       }
       label {
         color: #2d2d2d;
-        font-size: 11px;
+        font-size: 0.7rem;
         line-height: 1.7;
-        font-weight: 900;
+        font-weight: 600;
         letter-spacing: 1.7px;
         text-transform: uppercase;
         padding-right: 6px;

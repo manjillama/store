@@ -51,7 +51,7 @@ const Menu = ({
                 <a href="/collections/casual-clothes">Casual Clothes</a>
               </li>
               <li>
-                <a href="/collections/accesories">Accessories</a>
+                <a href="/collections/accessories">Accessories</a>
               </li>
             </ul>
             <ul className="list-nostyle">
