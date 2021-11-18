@@ -1,0 +1,38 @@
+name: Web App Staging
+
+on:
+  push:
+    branches:
+      - 'staging'
+    paths:
+      - '.github/workflows/app.stage.yml'
+      - 'app/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Copy file via ssh key
+        uses: appleboy/scp-action@master
+        env:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.KEY }}
+        with:
+          source: '.'
+          target: '~/apps/websites/store'
+
+      - name: Executing remote command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ~/apps/websites/store
+            docker-compose -f docker-compose.prod.yml up --build -d app

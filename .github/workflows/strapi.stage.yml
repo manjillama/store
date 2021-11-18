@@ -1,7 +1,12 @@
-name: Staging
+name: Strapi API Server Staging
+
 on:
   push:
-    branches: ['staging']
+    branches:
+      - 'staging'
+    paths:
+      - '.github/workflows/strapi.stage.yml'
+      - 'strapi-api/**'
 
 jobs:
   build:
@@ -30,4 +35,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ~/apps/websites/store
-            docker-compose -f docker-compose.prod.yml up --build -d
+            docker-compose -f docker-compose.prod.yml up --build -d strapi-api
