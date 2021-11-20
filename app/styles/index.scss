@@ -5,6 +5,7 @@
 @import './product.scss';
 @import './collection.scss';
 @import './mailerlite.scss';
+@import './contact.scss';
 
 * {
   -webkit-box-sizing: border-box;
@@ -496,6 +497,7 @@ ul {
 **/
 .banner {
   margin-bottom: -8px;
+  min-height: 80px;
   background-image: linear-gradient(
     to top,
     transparent 0%,

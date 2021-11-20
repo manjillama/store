@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
-import Navbar from '../component/navbar';
+import Navbar from '../components/navbar';
 import '../styles/index.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -19,6 +19,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="robots" content="all" />
 
         <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
+          rel="stylesheet"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
           rel="stylesheet"

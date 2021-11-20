@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_cta_ctas",
+  "info": {
+    "name": "CTA",
+    "icon": "bullhorn"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
