@@ -1,18 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import type { NextPage } from 'next';
+import type { GetServerSidePropsContext, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { getHomePageCarousel } from '../api';
 import { getProducts } from '../api/products';
-import Carousel from '../component/carousel';
-import SampleNextArrow from '../component/carousel/SampleNextArrow';
-import SamplePrevArrow from '../component/carousel/SamplePrevArrow';
-import Footer from '../component/footer';
-import ItemCard from '../component/item-card';
-import PageHead from '../component/page-head';
-import { IProduct } from '../interface';
+import Carousel from '../components/carousel';
+import SampleNextArrow from '../components/carousel/SampleNextArrow';
+import SamplePrevArrow from '../components/carousel/SamplePrevArrow';
+import Footer from '../components/footer';
+import ItemCard from '../components/item-card';
+import PageHead from '../components/page-head';
+import { ICtaCarousel, IProduct } from '../interface';
 
-const Home: NextPage = () => {
+const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
   return (
     <div>
       <PageHead
@@ -31,58 +32,30 @@ const Home: NextPage = () => {
             slidesToScroll: 1,
           }}
         >
-          <div className="banner-item">
-            <Image
-              layout="fill"
-              src="/assets/banner/banner-1.webp"
-              alt="Yatri Apparels"
-              className="img-cover"
-            />
-            <div className="caption container-l">
-              <h3>Must-have pieces you don&apos;t want to miss</h3>
-              <p>
-                Technical apparel, casual styles and endless accessories perfect
-                for two-wheel adventures and leisure looks too.
-              </p>
-              <Link href="/collections/motorcycle-clothes">
-                <a className="btn btn-primary">SHOP NOW</a>
-              </Link>
+          {homePageCarousel.map(({ id, title, caption, image, cta }) => (
+            <div key={id} className="banner-item">
+              <Image
+                layout="fill"
+                src={image.url}
+                alt={`banner ${id}`}
+                className="img-cover"
+              />
+              <div className="caption container-l">
+                <h3>{title}</h3>
+                <p>{caption}</p>
+                {cta && (
+                  <Link href={cta.link}>
+                    <a
+                      className="btn btn-primary"
+                      style={{ textTransform: 'uppercase' }}
+                    >
+                      {cta.name}
+                    </a>
+                  </Link>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="banner-item">
-            <Image
-              layout="fill"
-              src="/assets/banner/banner-2.webp"
-              alt="Yatri Apparels"
-              className="img-cover"
-            />
-            <div className="caption container-l">
-              <h3>Safe and protected in all weather conditions</h3>
-              <p>
-                Discover our four-season suits, multi-layer jackets, and other
-                rainproof and windproof garments designed to keep you protected
-                and ensure maximum support in all weather conditions.
-              </p>
-              <Link href="/collections/accessories">
-                <a className="btn btn-primary">SHOP NOW</a>
-              </Link>
-            </div>
-          </div>
-          <div className="banner-item">
-            <Image
-              layout="fill"
-              src="/assets/banner/banner-3.webp"
-              alt="Yatri Apparels"
-              className="img-cover"
-            />
-            <div className="caption container-l">
-              <h3>Leather jackets: protect yourself in style</h3>
-              <p>Like a second skin!</p>
-              <Link href="/collections/jackets">
-                <a className="btn btn-primary">SHOP NOW</a>
-              </Link>
-            </div>
-          </div>
+          ))}
         </Carousel>
       </header>
       <main className="container-l">
@@ -220,6 +193,20 @@ function Featured() {
       </div>
     </section>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { data } = await getHomePageCarousel();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { homePageCarousel: data }, // will be passed to the page component as props
+  };
 }
 
 export default Home;

@@ -1,8 +1,8 @@
 import { GetServerSidePropsContext } from 'next';
 import { getProducts } from '../../api/products';
-import Footer from '../../component/footer';
-import ItemCard from '../../component/item-card';
-import PageHead from '../../component/page-head';
+import Footer from '../../components/footer';
+import ItemCard from '../../components/item-card';
+import PageHead from '../../components/page-head';
 import { IProduct } from '../../interface';
 import { slugToString } from '../../utils';
 

@@ -5,15 +5,15 @@ import qs from 'qs';
 import Link from 'next/link';
 import ReactImageMagnify from 'react-image-magnify';
 import Slider from 'react-slick';
-import Carousel from '../../component/carousel';
-import SampleNextArrow from '../../component/carousel/SampleNextArrow';
-import SamplePrevArrow from '../../component/carousel/SamplePrevArrow';
-import Footer from '../../component/footer';
-import ItemCard from '../../component/item-card';
-import PageHead from '../../component/page-head';
+import Carousel from '../../components/carousel';
+import SampleNextArrow from '../../components/carousel/SampleNextArrow';
+import SamplePrevArrow from '../../components/carousel/SamplePrevArrow';
+import Footer from '../../components/footer';
+import ItemCard from '../../components/item-card';
+import PageHead from '../../components/page-head';
 import { getProductBySlug, getProducts } from '../../api/products';
 import { IProduct, productImageType } from '../../interface';
-import { RenderProductPrice } from '../../component/commons';
+import { RenderProductPrice } from '../../components/commons';
 
 const Product = ({ product }: { product: IProduct }) => {
   const {

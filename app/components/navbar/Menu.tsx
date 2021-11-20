@@ -68,7 +68,7 @@ const Menu = ({
                 <Link href="/experience-center">Experience Center</Link>
               </li>
               <li>
-                <Link href="/contact">Contact</Link>
+                <a href="/contact">Contact</a>
               </li>
             </ul>
           </div>
