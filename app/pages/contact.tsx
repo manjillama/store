@@ -18,7 +18,13 @@ const ContactMap = () => {
     // map.scrollZoom.disable();
     // if (map.tap) map.tap.disable();
 
-    new mapboxgl.Marker().setLngLat([85.330807, 27.727948]).addTo(map);
+    new mapboxgl.Marker()
+      .setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(`<h3>Yatri Experience Center</h3>`)
+      )
+      .setLngLat([85.32983251439876, 27.730766501226416])
+      .addTo(map);
   }, []);
 
   return <div id="map"></div>;
@@ -42,33 +48,55 @@ const ContactPage = () => (
       <section>
         <div className="container-md">
           <div className="contact-body">
-            <div className="left">
-              <h2>OUR OFFICE</h2>
-              <p>Baluwatar, KTM</p>
-            </div>
-            <div className="right">
-              <div>
-                <h3>
-                  <span className="bullet"></span>ADDRESS:
-                </h3>
-                <p>44600 Thirbam Sadak, Baluwatar</p>
-                <p>Kathmandu, Nepal</p>
+            <div>
+              <div className="left">
+                <h2>OUR EXPERIENCE CENTER</h2>
+                <p>Baluwatar, KTM</p>
               </div>
-              <div>
-                <h3>
-                  <span className="bullet"></span>CONTACT:
-                </h3>
-                <p>
-                  <a
-                    style={{ textDecoration: 'underline' }}
-                    href="mailto:info@yatrimotorcycles.com"
-                  >
-                    info@yatrimotorcycles.com
-                  </a>
-                </p>
-                {/* <p>
-              <a href="tel:+9779803577436">+977 (980) 357-7436</a>
-            </p> */}
+              <div className="right">
+                <div>
+                  <h3>
+                    <span className="bullet"></span>ADDRESS:
+                  </h3>
+                  <p>44616 Thirbam Sadak, Baluwatar</p>
+                  <p>Kathmandu, Nepal</p>
+                </div>
+                <div>
+                  <h3>
+                    <span className="bullet"></span>CONTACT:
+                  </h3>
+                  <p>
+                    <a href="tel:+9779803577436">+977 (980) 358-7436</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="left">
+                <h2>OUR HEADQUARTER</h2>
+                <p>Budanilkantha, KTM</p>
+              </div>
+              <div className="right">
+                <div>
+                  <h3>
+                    <span className="bullet"></span>ADDRESS:
+                  </h3>
+                  <p>44600, Budanilkantha</p>
+                  <p>Kathmandu, Nepal</p>
+                </div>
+                <div>
+                  <h3>
+                    <span className="bullet"></span>CONTACT:
+                  </h3>
+                  <p>
+                    <a
+                      style={{ textDecoration: 'underline' }}
+                      href="mailto:info@yatrimotorcycles.com"
+                    >
+                      info@yatrimotorcycles.com
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

@@ -6,38 +6,44 @@
   }
   .contact-body {
     padding-bottom: 2.5rem;
-    .left {
-      h2 {
-        color: $primary-color;
-        font-size: 0.9rem;
+    > div {
+      margin-bottom: 4rem;
+      .left {
+        h2 {
+          color: $primary-color;
+          font-size: 0.8rem;
+          font-weight: 400;
+          margin-bottom: 1rem;
+        }
+        p {
+          font-size: 2rem;
+          margin: 0;
+        }
       }
-      p {
-        font-size: 2rem;
-        margin: 0;
-      }
-    }
-    .right {
-      > div {
-        margin-top: 2rem;
-      }
-      p {
-        margin: 0.5rem 0;
-        color: #6c6f73;
-        font-size: 1.2rem;
-      }
-      h3 {
-        font-weight: 500;
-        font-size: 0.9rem;
-      }
-      .bullet {
-        top: -1px;
-        position: relative;
-        display: inline-block;
-        margin-right: 8px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #2ae9ae;
+      .right {
+        > div {
+          margin-top: 2rem;
+        }
+        p {
+          margin: 0.5rem 0;
+          color: #6c6f73;
+          font-size: 1.2rem;
+          font-weight: 400;
+        }
+        h3 {
+          font-weight: 500;
+          font-size: 0.9rem;
+        }
+        .bullet {
+          top: -1px;
+          position: relative;
+          display: inline-block;
+          margin-right: 8px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #2ae9ae;
+        }
       }
     }
   }
