@@ -23,7 +23,7 @@ const Footer = ({
           <Link href="/policies/terms-of-service">Terms &amp; Conditions</Link>
         </li>
         <li>
-          <Link href="/careers">Contact</Link>
+          <Link href="/contact">Contact</Link>
         </li>
         <li>
           <Link href="/policies/delivery-returns">Delivery &amp; Returns</Link>
