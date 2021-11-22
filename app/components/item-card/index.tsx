@@ -8,11 +8,7 @@ const ItemCard = ({ product }: { product: IProduct }) => (
     <Link href={`/products/${product.slug}`}>
       <a>
         <div className="item-image">
-          <Image
-            layout="fill"
-            src={product.images[0].formats.medium.url}
-            alt={product.name}
-          />
+          <Image layout="fill" src={product.images[0].url} alt={product.name} />
         </div>
         <div className="item-info">
           <div className="i-title">{product.name}</div>
