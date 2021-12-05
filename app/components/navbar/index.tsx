@@ -45,9 +45,7 @@ const Navbar = () => {
                     </button>
                   </li>
                   <li className="hide-xl">
-                    <a href="/collections/motorcycle-clothes">
-                      Motorcycle Clothes
-                    </a>
+                    <a href="/collections/helmets">Helmets</a>
                   </li>
                   <li className="hide-xl">
                     <a href="/collections/casual-clothes">Casual Clothes</a>
