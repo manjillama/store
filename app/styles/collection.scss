@@ -2,10 +2,10 @@
   .collection {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -3px;
+    margin: 0 -8px;
     .item-card {
       width: 33.33%;
-      padding: 3px;
+      padding: 8px;
       margin-bottom: 1rem;
       @media (max-width: 768px) {
         width: 50%;
