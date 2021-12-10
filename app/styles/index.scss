@@ -6,6 +6,7 @@
 @import './collection.scss';
 @import './mailerlite.scss';
 @import './contact.scss';
+@import './experience-center.scss';
 
 * {
   -webkit-box-sizing: border-box;
@@ -402,6 +403,14 @@ ul {
   font-size: 0.85rem;
   color: #a94442;
   font-weight: 500;
+}
+.overlay-dark {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 /*
 * React transition group
