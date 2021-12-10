@@ -1,0 +1,38 @@
+.ec-page {
+  .row-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    .ec-left {
+      position: relative;
+      width: 50%;
+      min-height: 360px;
+    }
+    .ec-right {
+      width: 50%;
+      padding: 2rem;
+    }
+    @media (max-width: 768px) {
+      .ec-right {
+        width: 100%;
+        padding: 2rem 0;
+      }
+      .ec-left {
+        width: 100%;
+      }
+    }
+  }
+  .row-content:nth-child(even) {
+    .ec-left {
+      order: 2;
+    }
+    @media (max-width: 768px) {
+      .ec-left {
+        order: 1;
+      }
+      .ec-right {
+        order: 2;
+      }
+    }
+  }
+}
