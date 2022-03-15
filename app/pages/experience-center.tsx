@@ -85,8 +85,8 @@ const ExperienceCenter = () => {
             <div className="ec-right">
               <h4>HANGOUT SPACE</h4>
               <p>
-                A chillout hangout space for our community. A chillout hangout
-                space for our community.
+                A chillout hangout space for our community. Treat yourself and
+                your friend with a nice coffee and chill!
               </p>
             </div>
           </div>
