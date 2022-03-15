@@ -41,7 +41,7 @@ const ContactPage = () => (
                     <span className="bullet"></span>CONTACT:
                   </h3>
                   <p>
-                    <a href="tel:+9779803577436">+977 (980) 358-7436</a>
+                    <a href="tel:+9779801877447">+977 (980) 187-7447</a>
                   </p>
                 </div>
               </div>

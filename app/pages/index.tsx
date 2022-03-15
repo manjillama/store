@@ -8,6 +8,7 @@ import { getProducts } from '../api/products';
 import Carousel from '../components/carousel';
 import SampleNextArrow from '../components/carousel/SampleNextArrow';
 import SamplePrevArrow from '../components/carousel/SamplePrevArrow';
+import Loader from '../components/commons';
 import Footer from '../components/footer';
 import ItemCard from '../components/item-card';
 import PageHead from '../components/page-head';
@@ -61,7 +62,7 @@ const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
       <main className="container-l">
         <NewIn />
 
-        <section>
+        {/* <section>
           <img
             src="/assets/banner/banner-4.webp"
             alt="Apparels Banner"
@@ -75,7 +76,7 @@ const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
             in the range of Yatri P1 clothing. Signature Yatri turquoise colours
             and contemporary designs: bring your best style to the track.
           </p>
-        </section>
+        </section> */}
 
         <Featured />
       </main>
@@ -105,7 +106,7 @@ function NewIn() {
     fetchData();
   }, []);
 
-  if (!products) return <p>Loading...</p>;
+  if (!products) return <Loader />;
 
   if (products.length < 3) return null;
   return (
@@ -158,7 +159,7 @@ function Featured() {
     fetchData();
   }, []);
 
-  if (!products) return <p>Loading...</p>;
+  if (!products) return <Loader />;
 
   if (products.length < 3) return null;
   return (
