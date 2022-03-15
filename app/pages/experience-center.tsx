@@ -60,7 +60,7 @@ const ExperienceCenter = () => {
             <div className="ec-left">
               <Image
                 layout="fill"
-                src="/assets/ec2.jpg"
+                src="/assets/ec3.jpg"
                 alt=""
                 objectFit="cover"
               />
@@ -77,7 +77,7 @@ const ExperienceCenter = () => {
             <div className="ec-left">
               <Image
                 layout="fill"
-                src="/assets/ec3.jpg"
+                src="/assets/ec2.jpg"
                 alt=""
                 objectFit="cover"
               />
