@@ -91,14 +91,8 @@ function NewIn() {
   // products?created_at_gte=2021-08-07
   useEffect(() => {
     async function fetchData() {
-      const today = new Date();
-      today.setMonth(today.getMonth() - 3);
-      const year = today.getUTCFullYear();
-      const month = today.getUTCMonth().toString().padStart(2, '0');
-      const day = today.getUTCDate().toString().padStart(2, '0');
-
       const { data } = await getProducts({
-        created_at_gte: `${year}-${month}-${day}`,
+        _sort: `created_at:DESC`,
         _limit: 12,
       });
       setProducts(data);
