@@ -18,6 +18,9 @@
     },
     "totalPrice": {
       "type": "integer"
+    },
+    "size": {
+      "type": "string"
     }
   }
 }

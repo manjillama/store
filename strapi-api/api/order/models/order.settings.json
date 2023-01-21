@@ -17,14 +17,13 @@
       "repeatable": true,
       "component": "entities.order"
     },
-    "phoneNumber": {
-      "type": "integer"
-    },
     "email": {
-      "type": "email"
+      "type": "email",
+      "required": true
     },
     "fullname": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "totalPrice": {
       "type": "integer"
@@ -39,6 +38,10 @@
     },
     "uuid": {
       "type": "uid"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
     }
   }
 }
