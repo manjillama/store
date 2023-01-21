@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_entities_orders",
+  "info": {
+    "name": "orderItem",
+    "icon": "boxes",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "model": "products"
+    },
+    "quantities": {
+      "type": "integer"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "totalPrice": {
+      "type": "integer"
+    }
+  }
+}
