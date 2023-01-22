@@ -32,7 +32,8 @@
       "type": "enumeration",
       "enum": [
         "Processing",
-        "Delivered"
+        "Delivered",
+        "Cancelled"
       ],
       "default": "Processing"
     },
@@ -42,6 +43,9 @@
     "phoneNumber": {
       "type": "string",
       "required": true
+    },
+    "remarks": {
+      "type": "string"
     }
   }
 }
