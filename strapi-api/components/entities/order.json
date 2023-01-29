@@ -14,10 +14,12 @@
       "type": "integer"
     },
     "price": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "totalPrice": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "size": {
       "type": "string"

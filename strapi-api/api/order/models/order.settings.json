@@ -15,7 +15,8 @@
     "order": {
       "type": "component",
       "repeatable": true,
-      "component": "entities.order"
+      "component": "entities.order",
+      "required": true
     },
     "email": {
       "type": "email",
@@ -26,7 +27,8 @@
       "required": true
     },
     "totalPrice": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "status": {
       "type": "enumeration",
@@ -35,7 +37,8 @@
         "Delivered",
         "Cancelled"
       ],
-      "default": "Processing"
+      "default": "Processing",
+      "required": false
     },
     "uuid": {
       "type": "uid"
@@ -45,6 +48,17 @@
       "required": true
     },
     "remarks": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "street": {
       "type": "string"
     }
   }
