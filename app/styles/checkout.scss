@@ -1,0 +1,177 @@
+#checkoutPage {
+  background-color: #eee;
+  padding: 25px 0;
+  h1 {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    padding-bottom: 22px;
+  }
+  .m-page {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 940px;
+    padding: 0 15px;
+    .l-card {
+      flex-grow: 1;
+      .inner-card {
+        padding: 25px;
+        background: #fff;
+        margin-bottom: 10px;
+        h2 {
+          text-transform: uppercase;
+          font-size: 18px;
+          font-weight: 900;
+          letter-spacing: 2px;
+        }
+        .c-field {
+          margin-top: 10px;
+          .a-summary {
+            ul li {
+              line-height: 28px;
+            }
+          }
+        }
+      }
+      .order-panel {
+        padding: 25px;
+        a {
+          text-decoration: underline;
+        }
+        .btn-order {
+          text-transform: uppercase;
+        }
+      }
+    }
+    .r-card {
+      margin-left: 10px;
+      width: 360px;
+      flex-shrink: 0;
+      > div {
+        padding: 15px;
+        background: #fff;
+        .bag-head {
+          justify-content: space-between;
+          h2 {
+            font-size: 17px;
+            text-transform: uppercase;
+          }
+          a {
+            text-decoration: underline;
+          }
+        }
+        .checkout-item {
+          margin: 15px 0;
+          border-top: 1px solid #eee;
+          border-bottom: 1px solid #eee;
+          .i-w {
+            height: 320px;
+            overflow-y: scroll;
+            .item {
+              padding: 12px 0;
+              //   border-top: 1px solid #eee;
+              &:first-child {
+                border-top: none;
+              }
+              .item-image {
+                width: 109px;
+                flex-shrink: 0;
+                margin-right: 10px;
+              }
+              .item-desc {
+                width: 100%;
+                padding: 0 20px;
+                .p-name {
+                  color: #666;
+                  font-size: 12px;
+                  overflow: hidden;
+                  height: 30px;
+                  text-overflow: ellipsis;
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                }
+                .p-price {
+                  font-size: 14px;
+                  font-weight: 700;
+                  margin-bottom: 4px;
+                  > p {
+                    margin: 0;
+                  }
+                  .pr-sp {
+                    color: #d01345;
+                  }
+                  .pr-cp {
+                    color: #666;
+                    font-weight: 400;
+                    font-size: 11px;
+                    text-decoration: line-through;
+                  }
+                }
+                .p-selections > div {
+                  &:first-child {
+                    margin-right: 12px;
+                  }
+                  font-size: 0.8rem;
+                }
+                .p-props {
+                  color: #666;
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+        }
+        table {
+          width: 100%;
+          font-size: inherit;
+          tr {
+            line-height: 15px;
+            line-height: 30px;
+            &.t-main {
+              font-size: 16px;
+              font-weight: 700;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+    .f-address {
+      position: relative;
+      .f-overlay {
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.6);
+        .spi {
+          margin: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 940px) {
+    .m-page {
+      flex-wrap: wrap;
+
+      .l-card {
+        width: 100%;
+      }
+      .r-card {
+        //   display: none;
+        margin: 0;
+        width: 100%;
+      }
+    }
+  }
+}

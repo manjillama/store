@@ -1,10 +1,11 @@
-import { GetServerSidePropsContext } from 'next';
-import { getProducts } from '../../api/products';
-import Footer from '../../components/footer';
-import ItemCard from '../../components/item-card';
-import PageHead from '../../components/page-head';
-import { IProduct } from '../../interface';
-import { slugToString } from '../../utils';
+import { GetServerSidePropsContext } from "next";
+import { getProducts } from "../../api/products";
+import Footer from "../../components/footer";
+import ItemCard from "../../components/item-card";
+import Navbar from "../../components/navbar";
+import PageHead from "../../components/page-head";
+import { IProduct } from "../../interface";
+import { slugToString } from "../../utils";
 
 const Product = ({
   params,
@@ -33,9 +34,10 @@ const Product = ({
   return (
     <>
       <PageHead
-        title={`${collection} | Yatri Motorcycles Store`}
+        title={`${collection} | Yatri Motorcycles Official Store`}
         description={collection}
       ></PageHead>
+      <Navbar />
       <div className="collection-page container-l nav-offset">
         <section>
           <h2 className="section-title">{collection}</h2>
@@ -51,7 +53,7 @@ const Product = ({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const queryParams = {
     ...context.query,
-    'collections.slug': context?.params?.collection,
+    "collections.slug": context?.params?.collection,
   } as any;
 
   delete queryParams.collection;

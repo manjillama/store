@@ -1,8 +1,7 @@
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
-import Script from 'next/script';
-import Navbar from '../components/navbar';
-import '../styles/index.scss';
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import Script from "next/script";
+import "../styles/index.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -47,7 +46,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <div className="my-app">
-        <Navbar />
         <Component {...pageProps} />
       </div>
       <Script

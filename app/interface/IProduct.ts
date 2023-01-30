@@ -28,6 +28,7 @@ export interface IProduct {
     size: string;
     stock: number;
   }[];
+  stock: number;
   images: productImageType[];
   collections: {
     id: number;

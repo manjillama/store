@@ -1,16 +1,17 @@
-import React from 'react';
-import Image from 'next/image';
-import Footer from '../components/footer';
-import PageHead from '../components/page-head';
-import ECMAP from '../components/ec-map';
+import React from "react";
+import Image from "next/image";
+import Footer from "../components/footer";
+import PageHead from "../components/page-head";
+import ECMAP from "../components/ec-map";
+import Navbar from "../components/navbar";
 
 const ContactPage = () => (
   <>
     <PageHead
-      title="Contact Us | Yatri Experience Center"
+      title="Contact Us | Yatri Motorcycles Official Store"
       description="General inquiries: info@yatrimotorcycles.com, Baluwatar Thirbam Sadak, Kathmandu 44600, Kathmandu, Nepal"
     ></PageHead>
-
+    <Navbar />
     <div className="contact-page">
       <div className="contact-header">
         <Image
@@ -65,7 +66,7 @@ const ContactPage = () => (
                   </h3>
                   <p>
                     <a
-                      style={{ textDecoration: 'underline' }}
+                      style={{ textDecoration: "underline" }}
                       href="mailto:info@yatrimotorcycles.com"
                     >
                       info@yatrimotorcycles.com
@@ -75,7 +76,7 @@ const ContactPage = () => (
               </div>
             </div>
           </div>
-          <div style={{ height: 300, width: '100%' }}>
+          <div style={{ height: 300, width: "100%" }}>
             <ECMAP />
           </div>
         </div>

@@ -1,26 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
-import type { GetServerSidePropsContext, NextPage } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { getHomePageCarousel } from '../api';
-import { getProducts } from '../api/products';
-import Carousel from '../components/carousel';
-import SampleNextArrow from '../components/carousel/SampleNextArrow';
-import SamplePrevArrow from '../components/carousel/SamplePrevArrow';
-import Loader from '../components/commons';
-import Footer from '../components/footer';
-import ItemCard from '../components/item-card';
-import PageHead from '../components/page-head';
-import { ICtaCarousel, IProduct } from '../interface';
+import type { GetServerSidePropsContext, NextPage } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getHomePageCarousel } from "../api";
+import { getProducts } from "../api/products";
+import Carousel from "../components/carousel";
+import SampleNextArrow from "../components/carousel/SampleNextArrow";
+import SamplePrevArrow from "../components/carousel/SamplePrevArrow";
+import Loader from "../components/commons";
+import Footer from "../components/footer";
+import ItemCard from "../components/item-card";
+import Navbar from "../components/navbar";
+import PageHead from "../components/page-head";
+import { ICtaCarousel, IProduct } from "../interface";
 
 const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
   return (
     <div>
       <PageHead
-        title="Motorcycles, Casual and Accessories Clothing | Yatri Motorcycles Official Apparel Store"
+        title="Motorcycles, Casual and Accessories Clothing | Yatri Motorcycles Official Store"
         description="Yatri Motorcycles online store: clothing, helmets, accessories and merchandising by Yatri Motorcycles."
       ></PageHead>
+      <Navbar />
       <header className="banner">
         <Carousel
           settings={{
@@ -36,6 +38,7 @@ const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
           {homePageCarousel.map(({ id, title, caption, image, cta }) => (
             <div key={id} className="banner-item">
               <Image
+                priority
                 layout="fill"
                 src={image.url}
                 alt={`banner ${id}`}
@@ -48,7 +51,7 @@ const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
                   <Link href={cta.link}>
                     <a
                       className="btn btn-primary"
-                      style={{ textTransform: 'uppercase' }}
+                      style={{ textTransform: "uppercase" }}
                     >
                       {cta.name}
                     </a>

@@ -1,19 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image';
-import Link from 'next/link';
-import Footer from '../components/footer';
-import PageHead from '../components/page-head';
+import Image from "next/image";
+import Link from "next/link";
+import Footer from "../components/footer";
+import Navbar from "../components/navbar";
+import PageHead from "../components/page-head";
 
 const ExperienceCenter = () => {
   return (
     <div className="ec-page">
       <PageHead
-        title="Motorcycles, Casual and Accessories Clothing | Yatri Motorcycles Experience Center"
-        description="Shop, Learn and Chill | Yatri Motorcycles Experience Center"
+        title="Motorcycles, Casual and Accessories Clothing | Yatri Motorcycles Official Store"
+        description="Shop, Learn and Chill | Yatri Motorcycles Official Store"
       ></PageHead>
+      <Navbar />
       <header className="banner">
         <div className="banner-item">
           <Image
+            priority
             layout="fill"
             src={`/assets/ec.jpg`}
             alt=""
@@ -29,7 +32,7 @@ const ExperienceCenter = () => {
             <Link href="/contact">
               <a
                 className="btn btn-primary"
-                style={{ textTransform: 'uppercase' }}
+                style={{ textTransform: "uppercase" }}
               >
                 Visit Us
               </a>

@@ -1,31 +1,40 @@
-import React, { useEffect } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import Link from 'next/link';
+import React, { useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
+import Link from "next/link";
+import { useRouter } from "next/dist/client/router";
 
 const Menu = ({
-  theme = 'dark',
+  theme = "dark",
   showMenu,
   setShowMenu,
 }: {
-  theme: 'dark' | 'light';
+  theme: "dark" | "light";
   showMenu: boolean;
   setShowMenu: Function;
 }) => {
+  const router = useRouter();
+
   useEffect(() => {
-    if (showMenu) document.body.classList.add('no-scroll');
-    else document.body.classList.remove('no-scroll');
+    if (showMenu) document.body.classList.add("no-scroll");
+    else document.body.classList.remove("no-scroll");
   }, []);
+
+  const handleNavigation = (e: any) => {
+    e.preventDefault();
+    router.push(e.target.href);
+    setShowMenu(false);
+  };
 
   return (
     <CSSTransition in={showMenu} timeout={100} classNames="fade" unmountOnExit>
-      <div className={`f-menu ${theme === 'light' && 'light'}`}>
+      <div className={`f-menu ${theme === "light" && "light"}`}>
         <div className="container-md">
           <div className="menu-header">
             <Link href="/">
               <a className="logo-wrapper">
                 <img
                   alt="logo"
-                  style={{ display: 'block', width: 144 }}
+                  style={{ display: "block", width: 144 }}
                   src="/assets/logo.png"
                 />
               </a>
@@ -36,7 +45,7 @@ const Menu = ({
             >
               <img
                 src={`${
-                  theme === 'dark' ? '/assets/close.svg' : '/assets/close.png'
+                  theme === "dark" ? "/assets/close.svg" : "/assets/close.png"
                 }`}
                 alt="Close button"
               />
@@ -45,13 +54,22 @@ const Menu = ({
           <div className="menu-body">
             <ul className="list-nostyle">
               <li>
-                <a href="/collections/helmets">Helmets</a>
+                <a onClick={handleNavigation} href="/collections/helmets">
+                  Helmets
+                </a>
               </li>
               <li>
-                <a href="/collections/casual-clothes">Casual Clothes</a>
+                <a
+                  onClick={handleNavigation}
+                  href="/collections/casual-clothes"
+                >
+                  Casual Clothes
+                </a>
               </li>
               <li>
-                <a href="/collections/accessories">Accessories</a>
+                <a onClick={handleNavigation} href="/collections/accessories">
+                  Accessories
+                </a>
               </li>
             </ul>
             <ul className="list-nostyle">
@@ -73,7 +91,7 @@ const Menu = ({
             </ul>
           </div>
           <div className="menu-footer">
-            <p>YATRI MOTORCYCLES &copy; 2021</p>
+            <p>YATRI MOTORCYCLES &copy; {new Date().getFullYear()}</p>
             <ul className="list-nostyle list-inline socials">
               <li>
                 <a

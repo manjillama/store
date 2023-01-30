@@ -1,9 +1,10 @@
-import { GetServerSidePropsContext } from 'next';
-import { searchProducts } from '../../api/products';
-import Footer from '../../components/footer';
-import ItemCard from '../../components/item-card';
-import PageHead from '../../components/page-head';
-import { IProduct } from '../../interface';
+import { GetServerSidePropsContext } from "next";
+import { searchProducts } from "../../api/products";
+import Footer from "../../components/footer";
+import ItemCard from "../../components/item-card";
+import Navbar from "../../components/navbar";
+import PageHead from "../../components/page-head";
+import { IProduct } from "../../interface";
 
 const Search = ({
   params,
@@ -36,9 +37,10 @@ const Search = ({
   return (
     <>
       <PageHead
-        title={`${params.q} | Yatri Motorcycles Official Apparel Store`}
+        title={`${params.q} | Yatri Motorcycles Official Store`}
         description="Yatri Motorcycles online store: clothing, helmets, accessories and merchandising by Yatri Motorcycles."
       ></PageHead>
+      <Navbar />
       <div className="collection-page container-l nav-offset">
         <section>
           <h2 className="section-title">
@@ -55,7 +57,7 @@ const Search = ({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const { q } = context.query;
-    if (!q) throw new Error('No search term present');
+    if (!q) throw new Error("No search term present");
 
     const { data } = await searchProducts(q as string);
 

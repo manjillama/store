@@ -1,15 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
-import Newsletter from '../newsletter';
+import React from "react";
+import Link from "next/link";
+import Newsletter from "../newsletter";
 
 const Footer = ({
-  theme = 'light',
+  theme = "light",
   hideNewsletter = false,
 }: {
-  theme?: 'light' | 'dark';
+  theme?: "light" | "dark";
   hideNewsletter?: boolean;
 }) => (
-  <footer className={theme === 'light' ? 'light' : ''}>
+  <footer className={theme === "light" ? "light" : ""}>
     <div className="container-l">{!hideNewsletter && <Newsletter />}</div>
     <br />
     <div className="footer container-l">
@@ -20,13 +20,13 @@ const Footer = ({
           </Link>
         </li>
         <li>
-          <Link href="/policies/terms-of-service">Terms &amp; Conditions</Link>
+          <Link href="/policies">Privacy &amp; Policy</Link>
+        </li>
+        <li>
+          <Link href="/policies#delivery-returns">Delivery &amp; Returns</Link>
         </li>
         <li>
           <Link href="/contact">Contact</Link>
-        </li>
-        <li>
-          <Link href="/policies/delivery-returns">Delivery &amp; Returns</Link>
         </li>
       </ul>
       <br />

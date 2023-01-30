@@ -1,12 +1,15 @@
-@import './theming';
-@import './footer.scss';
-@import './navbar.scss';
-@import './item-card.scss';
-@import './product.scss';
-@import './collection.scss';
-@import './mailerlite.scss';
-@import './contact.scss';
-@import './experience-center.scss';
+@import "./theming";
+@import "./footer.scss";
+@import "./navbar.scss";
+@import "./item-card.scss";
+@import "./product.scss";
+@import "./collection.scss";
+@import "./mailerlite.scss";
+@import "./contact.scss";
+@import "./experience-center.scss";
+@import "./side-cart.scss";
+@import "./cart.scss";
+@import "./checkout.scss";
 
 * {
   -webkit-box-sizing: border-box;
@@ -28,7 +31,7 @@ body {
   // -moz-osx-font-smoothing: grayscale;
   // -webkit-font-smoothing: antialiased;
   -webkit-text-stroke: 1;
-  font-family: 'Barlow', sans-serif;
+  font-family: "Barlow", sans-serif;
   font-size: 17px;
   font-weight: 400;
   margin: 0;
@@ -68,6 +71,9 @@ button {
 }
 a.link {
   color: #277bba;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 hr {
   border: none;
@@ -105,6 +111,11 @@ hr {
   &.btn-secondary {
     background: $secondary-color;
     border-color: $secondary-color;
+    color: #fff;
+  }
+  &.btn-success {
+    background: $success-color;
+    border-color: $success-color;
     color: #fff;
   }
   &.btn-default {
@@ -189,14 +200,14 @@ button[disabled]:hover {
   appearance: none;
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
-  &:checked[type='radio'] {
+  &:checked[type="radio"] {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
   }
   &:checked {
     background-color: #000;
     border-color: #000;
   }
-  &[type='radio'] {
+  &[type="radio"] {
     border-radius: 50%;
   }
 }
@@ -205,7 +216,7 @@ select {
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: ellipsis;
-  background: #fff url('/assets/chevron-down.svg') no-repeat right 12px center;
+  background: #fff url("/assets/chevron-down.svg") no-repeat right 12px center;
   padding: 7px 28% 7px 8px;
   border-radius: 0;
   width: 100%;
@@ -220,7 +231,6 @@ label {
   text-transform: uppercase;
   color: rgb(120, 120, 120);
   font-weight: 500;
-  margin-top: -3px;
 }
 /*
 * Containers
@@ -248,6 +258,12 @@ label {
 }
 .row {
   margin: 0 -15px;
+}
+.d-flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
 }
 /**
 * TABLE
@@ -298,6 +314,12 @@ ul {
 .text-right {
   text-align: right;
 }
+.text-muted {
+  color: #5c5e62;
+}
+.text-success {
+  color: $success-color;
+}
 .section-title {
   text-transform: uppercase;
   font-size: 1.3rem;
@@ -335,9 +357,6 @@ ul {
     border-color: $secondary-color;
   }
 }
-.text-muted {
-  color: #5c5e62;
-}
 .hint-text {
   color: rgba(255, 255, 255, 0.8) !important;
 }
@@ -345,7 +364,7 @@ ul {
   width: 100%;
   height: 100%;
   display: block;
-  font-family: 'object-fit:cover';
+  font-family: "object-fit:cover";
   -o-object-fit: cover;
   object-fit: cover;
 }

@@ -1,19 +1,22 @@
 /* eslint-disable jsx-a11y/alt-text, @next/next/no-img-element */
-import { GetServerSidePropsContext } from 'next';
-import { useEffect, useState, useRef } from 'react';
-import qs from 'qs';
-import Link from 'next/link';
-import ReactImageMagnify from 'react-image-magnify';
-import Slider from 'react-slick';
-import Carousel from '../../components/carousel';
-import SampleNextArrow from '../../components/carousel/SampleNextArrow';
-import SamplePrevArrow from '../../components/carousel/SamplePrevArrow';
-import Footer from '../../components/footer';
-import ItemCard from '../../components/item-card';
-import PageHead from '../../components/page-head';
-import { getProductBySlug, getProducts } from '../../api/products';
-import { IProduct, productImageType } from '../../interface';
-import { RenderProductPrice } from '../../components/commons';
+import { GetServerSidePropsContext } from "next";
+import { useEffect, useState, useRef } from "react";
+import qs from "qs";
+import Link from "next/link";
+import ReactImageMagnify from "react-image-magnify";
+import Slider from "react-slick";
+import Carousel from "../../components/carousel";
+import SampleNextArrow from "../../components/carousel/SampleNextArrow";
+import SamplePrevArrow from "../../components/carousel/SamplePrevArrow";
+import Footer from "../../components/footer";
+import ItemCard from "../../components/item-card";
+import PageHead from "../../components/page-head";
+import { getProductBySlug, getProducts } from "../../api/products";
+import { IProduct, productImageType } from "../../interface";
+import { RenderProductPrice } from "../../components/commons";
+import SideCart from "../../components/side-cart";
+import { addItemToCart } from "../../service/cart";
+import Navbar from "../../components/navbar";
 
 const Product = ({ product }: { product: IProduct }) => {
   const {
@@ -23,18 +26,20 @@ const Product = ({ product }: { product: IProduct }) => {
     price,
     comparePrice,
     description,
+    stock,
     images,
     brand,
     collections,
   } = product;
 
   const [submitting, setSubmitting] = useState(false);
-  const [cartError, setCartError] = useState('');
-  const [selection, setSelection] = useState<{ size?: string }>({ size: '' });
+  const [cartError, setCartError] = useState("");
+  const [openSideCart, setOpenSideCart] = useState(false);
+  const [selection, setSelection] = useState<{ size?: string }>({ size: "" });
   const slider = useRef<any>(null);
 
   useEffect(() => {
-    const descElem = document.getElementById('productDetail');
+    const descElem = document.getElementById("productDetail");
     if (descElem) descElem.innerHTML = description;
   }, []);
 
@@ -43,19 +48,20 @@ const Product = ({ product }: { product: IProduct }) => {
     Returns true if all stocks is less than or equal to zero
     */
     const outOfStock =
-      sizes.length > 0 && sizes.every((size: any) => size.stock <= 0);
+      !stock ||
+      (sizes.length > 0 && sizes.every((size: any) => size.stock <= 0));
 
     return (
       <button
-        className="btn btn-primary add-item p-l"
+        className="btn btn-success add-item p-l"
         onClick={onAddToCart}
         disabled={outOfStock || submitting}
-        style={{ paddingLeft: '3rem', paddingRight: '3rem' }}
+        style={{ paddingLeft: "3rem", paddingRight: "3rem" }}
       >
         {submitting && (
-          <div className="spi spi-light" style={{ position: 'absolute' }}></div>
+          <div className="spi spi-light" style={{ position: "absolute" }}></div>
         )}
-        {outOfStock ? 'OUT OF STOCK' : 'ADD TO BAG'}
+        {outOfStock ? "OUT OF STOCK" : "ADD TO BAG"}
       </button>
     );
   }
@@ -73,21 +79,43 @@ const Product = ({ product }: { product: IProduct }) => {
   };
 
   const onAddToCart = () => {
-    validation();
+    if (!validation()) return;
+
+    setOpenSideCart(true);
+    addItemToCart({
+      size: selection.size,
+      quantity: 1,
+      product,
+      price: product.price,
+      totalPrice: product.price * 1,
+    });
   };
 
   const validation = () => {
-    setCartError('');
-    if (sizes[0] && !selection.size)
-      setCartError('Please select from the available size options');
+    setCartError("");
+    if (sizes[0] && !selection.size) {
+      setCartError("Please select from the available size options");
+      return false;
+    }
+    return true;
+  };
+
+  const setCartVisibility = (flag: boolean) => {
+    setOpenSideCart(flag);
+  };
+
+  const onBlur = (e: any) => {
+    if (!document?.getElementById("myMiniBag")?.contains(e.target))
+      setCartVisibility(false);
   };
 
   return (
     <>
       <PageHead
-        title={`${name} | Yatri Motorcycles Store`}
+        title={`${name} | Yatri Motorcycles Offical Store`}
         description={description}
       ></PageHead>
+      <Navbar />
       <div className="product-page container-l nav-offset">
         <div className="product-layout">
           <div className="gallery-content-wrapper">
@@ -140,47 +168,50 @@ const Product = ({ product }: { product: IProduct }) => {
                       key={size.size}
                       disabled={size.stock > 0 ? false : true}
                     >
-                      {size.size} {size.stock > 0 ? '' : '- Out of stock'}
+                      {size.size} {size.stock > 0 ? "" : "- Out of stock"}
                     </option>
                   ))}
                 </select>
               </div>
             )}
             <div className="product-add">
-              {/* <RenderCartButton
+              <RenderCartButton
                 onAddToCart={onAddToCart}
                 submitting={submitting}
-              /> */}
-              <small
+              />
+              {/* <small
                 className="alert p-l"
-                style={{ backgroundColor: '#FAE7EC', fontSize: '0.7rem' }}
+                style={{ backgroundColor: "#FAE7EC", fontSize: "0.7rem" }}
               >
                 <i className="fas fa-info-circle"></i> We're still working on
-                our e-store. To make an order please visit our{' '}
+                our e-store. To make an order please visit our{" "}
                 <Link href="/experience-center">
-                  <a style={{ textDecoration: 'underline' }}>
+                  <a style={{ textDecoration: "underline" }}>
                     experience center
                   </a>
                 </Link>
                 . We'll be thrilled to have you visit us!
-              </small>
+              </small> */}
+              <div>
+                <Link href="/policies#delivery-returns">
+                  <a className="btn-chromeless product-delivery">
+                    <small>Delivery and returns info</small>
+                  </a>
+                </Link>
+              </div>
               {cartError && (
                 <small
                   className="alert p-l"
-                  style={{ backgroundColor: '#FAE7EC', fontSize: '0.7rem' }}
+                  style={{ backgroundColor: "#FAE7EC", fontSize: "0.7rem" }}
                 >
                   {cartError}
                 </small>
               )}
-              <Link href="#">
-                <a className="btn-chromeless product-delivery">
-                  <small>Delivery and returns info</small>
-                </a>
-              </Link>
+
               <div className="p-detail">
                 <div>
                   <h2>Brand</h2>
-                  {brand?.name || '-'}
+                  {brand?.name || "-"}
                 </div>
                 <div>
                   <h2>Product Details</h2>
@@ -198,7 +229,11 @@ const Product = ({ product }: { product: IProduct }) => {
           collectionSlugs={collections.map((collection) => collection.slug)}
         />
       </div>
-
+      <SideCart
+        onBlur={onBlur}
+        setCartVisibility={setCartVisibility}
+        show={openSideCart}
+      />
       <Footer theme="dark" />
     </>
   );
@@ -234,7 +269,7 @@ function ImageMagnify({
                 width: 870,
                 height: 1110,
               },
-              enlargedImagePosition: 'over',
+              enlargedImagePosition: "over",
               hoverDelayInMs: 50,
               hoverOffDelayInMs: 50,
               fadeDurationInMs: 150,
@@ -253,7 +288,7 @@ function Recommended({ collectionSlugs }: { collectionSlugs: string[] }) {
 
   const query = qs.stringify({
     _where: {
-      _or: collectionSlugs.map((slug) => ({ 'collections.slug': slug })),
+      _or: collectionSlugs.map((slug) => ({ "collections.slug": slug })),
     },
   });
 

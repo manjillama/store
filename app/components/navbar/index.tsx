@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import Menu from './Menu';
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import Menu from "./Menu";
 
 const Navbar = () => {
   const [searchOpened, setSearchOpened] = useState(false);
@@ -10,27 +10,27 @@ const Navbar = () => {
 
   const handleSearchOpened = () => {
     setSearchOpened(!searchOpened);
-    document.getElementById('search-input')?.focus();
+    document.getElementById("search-input")?.focus();
   };
 
   const handleBlur = (e: any) => {
-    if (!document.getElementById('navbar-nav')?.contains(e.target))
+    if (!document.getElementById("navbar-nav")?.contains(e.target))
       setSearchOpened(false);
   };
 
   return (
     <>
       <div
-        className={`navbar-wrapper ${searchOpened ? 'search-open' : ''}`}
+        className={`navbar-wrapper ${searchOpened ? "search-open" : ""}`}
         onClick={handleBlur}
       >
         <nav className="navbar container-l">
           <div
             id="navbar-nav"
             style={{
-              transform: showMenu ? 'translateY(-75px)' : 'translate(0)',
+              transform: showMenu ? "translateY(-75px)" : "translate(0)",
               opacity: showMenu ? 0 : 1,
-              boxShadow: '0 6px 24px 0 rgb(0 0 0 / 20%)',
+              boxShadow: "0 6px 24px 0 rgb(0 0 0 / 20%)",
             }}
           >
             <div className="nav">
@@ -45,23 +45,25 @@ const Navbar = () => {
                     </button>
                   </li>
                   <li className="hide-xl">
-                    <a href="/collections/helmets">Helmets</a>
+                    <Link href="/collections/helmets">Helmets</Link>
                   </li>
                   <li className="hide-xl">
-                    <a href="/collections/casual-clothes">Casual Clothes</a>
+                    <Link href="/collections/casual-clothes">
+                      Casual Clothes
+                    </Link>
                   </li>
                   <li className="hide-xl">
-                    <a href="/collections/accessories">Accessories</a>
+                    <Link href="/collections/accessories">Accessories</Link>
                   </li>
                 </ul>
               </div>
               <div
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  position: 'absolute',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
+                  display: "flex",
+                  alignItems: "center",
+                  position: "absolute",
+                  left: "50%",
+                  transform: "translateX(-50%)",
                 }}
               >
                 <Link href="/">
@@ -77,9 +79,14 @@ const Navbar = () => {
                   </li>
 
                   <li>
-                    <button className="btn-chromeless" disabled>
-                      <i className="fas fa-shopping-cart"></i>
-                    </button>
+                    <Link href="/cart">
+                      <a
+                        className="btn-chromeless"
+                        style={{ position: "relative" }}
+                      >
+                        <i className="fas fa-shopping-cart"></i>
+                      </a>
+                    </Link>
                   </li>
                   <li>
                     <button
@@ -93,7 +100,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className="search-box">
-              <form action="/search" method="GET" style={{ height: '100%' }}>
+              <form action="/search" method="GET" style={{ height: "100%" }}>
                 <input
                   name="q"
                   placeholder="SEARCH"

@@ -1,0 +1,260 @@
+#bagPage {
+  background-color: #eee;
+  color: #2d2d2d;
+
+  .m-bag {
+    max-width: 960px;
+    padding: 10px;
+    margin: 0 auto;
+    .f-bag {
+      .bag-item-wrapper {
+        width: 60.6382978723%;
+        .title-holder {
+          align-items: center;
+          padding: 26px 30px 16px;
+          h2 {
+            flex-grow: 1;
+            font-size: 18px;
+            letter-spacing: 2.5px;
+            font-weight: 900;
+            text-transform: uppercase;
+          }
+        }
+        .bag-items {
+          padding: 0 30px;
+          li {
+            position: relative;
+            &.item {
+              padding: 20px 0;
+              border-top: 1px solid #eee;
+              .item-image {
+                flex-shrink: 0;
+                width: 110px;
+              }
+              .item-desc {
+                flex-grow: 1;
+                padding: 0 20px;
+                .p-name {
+                  font-size: 12.5px;
+                }
+                .p-selections {
+                  margin: 10px 0;
+                  > * {
+                    align-items: center;
+                    padding: 0 10px;
+                    border-right: 1px solid #ddd;
+                    padding-left: 15px;
+                    font-size: 13px;
+                    &:first-of-type {
+                      padding-left: 0;
+                    }
+                    &:last-of-type {
+                      border-right: none;
+                    }
+                  }
+                  label {
+                    font-weight: 700;
+                    color: #666;
+                  }
+                  select {
+                    background-size: 8px;
+                    width: auto;
+                    border: none;
+                    color: #666;
+                    min-width: 50px;
+                  }
+                }
+                .p-price {
+                  font-size: 14px;
+                  font-weight: 900;
+                  letter-spacing: 1.5px;
+                  line-height: 20px;
+                  margin: 0;
+                  .pr-sp {
+                    color: #d01345;
+                  }
+                  .pr-cp {
+                    color: #666;
+                    font-weight: 400;
+                    font-size: 13px;
+                    text-decoration: line-through;
+                  }
+                }
+              }
+              .basic-error-box {
+                svg {
+                  font-size: 20px;
+                  color: #ffbd00;
+                  flex-shrink: 0;
+                  margin-right: 8px;
+                }
+              }
+            }
+            .update-panel {
+              text-align: right;
+              padding-bottom: 18px;
+              .btn-primary-fade {
+                font-weight: 700;
+              }
+              .btn-chromeless {
+                text-decoration: underline;
+                margin-right: 18px;
+              }
+            }
+            .ellipsis-loader {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 2;
+            }
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(255, 255, 255, 0.6);
+              z-index: 1;
+            }
+          }
+        }
+      }
+      .bag-panel {
+        background: #fff;
+        padding: 30px;
+        margin-top: 10px;
+        h4 {
+          font-size: 15px;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        p {
+          font-size: 13px;
+          margin: 6px 0;
+        }
+        span {
+          text-decoration: underline;
+          font-size: 0.7rem;
+        }
+        svg {
+          font-size: 32px;
+          margin-right: 30px;
+        }
+      }
+      .bag-checkout {
+        width: 39.3617021277%;
+        padding-left: 10px;
+        .total-wrapper {
+          padding: 26px 30px;
+          .c-title {
+            h2 {
+              font-size: 18px;
+              letter-spacing: 2.5px;
+              font-weight: 900;
+              text-transform: uppercase;
+              padding-bottom: 16px;
+              margin-bottom: 14px;
+              border-bottom: 1px solid #eee;
+            }
+          }
+          .c-info {
+            margin-bottom: 8px;
+            .sub-t {
+              font-weight: 700;
+              color: #2d2d2d;
+              letter-spacing: 1.2px;
+              font-size: 16px;
+            }
+            .price-t {
+              float: right;
+              font-size: 15px;
+              letter-spacing: 1.2px;
+            }
+            .i-t {
+              float: right;
+              font-size: 15px;
+              color: #999;
+              display: block;
+              margin-top: 7px;
+            }
+          }
+          .checkout-btn {
+            letter-spacing: 1.9px;
+            max-width: 100%;
+            font-weight: 900;
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+          }
+        }
+      }
+      .bag-content {
+        background-color: #fff;
+      }
+    }
+
+    @media screen and (max-width: 869px) {
+      .f-bag {
+        .bag-item-wrapper {
+          width: 100%;
+        }
+        .bag-checkout {
+          width: 100%;
+          padding: 0;
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .m-bag {
+      padding: 10px 0 !important;
+      .f-bag {
+        .bag-item-wrapper {
+          .title-holder {
+            padding: 26px 15px 16px !important;
+          }
+          .bag-items {
+            padding: 0 15px !important;
+            .item-image {
+              width: 82px !important;
+            }
+            .p-selections {
+              display: flex;
+              flex-wrap: wrap;
+              padding: 0;
+              > * {
+                border: none !important;
+                padding: 0 !important;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.e-bag {
+  max-width: 394px;
+  margin: 0 auto;
+  padding: 60px 0;
+  text-align: center;
+  svg {
+    stroke-width: 10px;
+    font-size: 18px;
+  }
+  h2 {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 24px;
+    letter-spacing: 0.8px;
+    margin: 18px 16px 18px;
+  }
+  p {
+    margin-bottom: 28px;
+    font-size: 13.5px;
+  }
+}
