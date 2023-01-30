@@ -28,7 +28,7 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
     street: "",
     order: transformCartToOrderData(cart),
     totalPrice: transformCartToOrderData(cart).reduce(
-      (a, b) => a + b.totalPrice,
+      (a: number, b: { totalPrice: number }) => a + b.totalPrice,
       0
     ),
   });

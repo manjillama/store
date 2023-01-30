@@ -6,9 +6,10 @@ import CartItem from "../../components/cart-item";
 import Footer from "../../components/footer";
 import PageHead from "../../components/page-head";
 import Navbar from "../../components/navbar";
+import { ICart, ICartItem } from "../../interface";
 
 const Cart = () => {
-  const [cart, setCart] = useState<any | null>(null);
+  const [cart, setCart] = useState<ICart | null>(null);
 
   useEffect(() => {
     setCart(getCart());
@@ -131,9 +132,11 @@ const Cart = () => {
                 What are you waiting for? Let&apos;s spice up your bag with
                 awesomeness
               </p>
-              <a href="/" className="btn btn-success">
-                <strong>Continue Shopping</strong>
-              </a>
+              <Link href="/">
+                <a className="btn btn-success">
+                  <strong>Continue Shopping</strong>
+                </a>
+              </Link>
             </div>
           )}
         </div>
@@ -145,7 +148,7 @@ const Cart = () => {
 /*
  * Calculating cart items total cost
  */
-function subTotal(items: any) {
+function subTotal(items: ICartItem[]) {
   return items.reduce((a, b) => {
     return a + b.product.price * b.quantity;
   }, 0);

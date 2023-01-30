@@ -6,6 +6,7 @@ import Footer from "../../components/footer";
 import PageHead from "../../components/page-head";
 import CheckoutForm from "../../components/checkout-form";
 import Loader from "../../components/commons";
+import { ICart, ICartItem } from "../../interface";
 
 const deliveryCities = [
   { city: "Achham", price: 160 },
@@ -89,7 +90,7 @@ const deliveryCities = [
 //   deliveryCities.find((city) => city.city === deliveryCity)?.price;
 
 const Checkout = () => {
-  const [cart, setCart] = useState<any | null>(null);
+  const [cart, setCart] = useState<ICart | null>(null);
 
   useEffect(() => {
     setCart(getCart());
@@ -224,6 +225,6 @@ export default Checkout;
 /*
  * Calculating cart items total cost
  */
-function subTotal(items) {
+function subTotal(items: ICartItem[]) {
   return items.reduce((a, b) => a + b.product.price * b.quantity, 0);
 }

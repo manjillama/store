@@ -3,6 +3,8 @@ import Image from "next/image";
 import Loader from "../commons";
 import { getCart } from "../../service/cart";
 import { useEffect, useState } from "react";
+import { ICart, ICartItem } from "../../interface/ICart";
+import { IProduct } from "../../interface";
 
 const SideCart = ({
   onBlur,
@@ -13,7 +15,7 @@ const SideCart = ({
   setCartVisibility: (flag: boolean) => void;
   show: boolean;
 }) => {
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState<null | ICart>(null);
 
   useEffect(() => {
     setCart(getCart());
@@ -83,7 +85,7 @@ const SideCart = ({
   );
 };
 
-function RenderItem({ item }: { item: typeof cart.items[0] }) {
+function RenderItem({ item }: { item: ICartItem }) {
   const { product } = item;
 
   return (
@@ -130,7 +132,7 @@ function renderPriceField(price: number, comparePrice: number) {
 /*
  * Calculating cart items total cost
  */
-function subTotal(items: typeof cart.items) {
+function subTotal(items: ICartItem[]) {
   return items.reduce((a, b) => {
     return a + b.product.price * b.quantity;
   }, 0);
