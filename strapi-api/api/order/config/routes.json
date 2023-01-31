@@ -11,7 +11,7 @@
     {
       "method": "GET",
       "path": "/orders/uuid/:uuid",
-      "handler": "orders.findUuid",
+      "handler": "order.findUuid",
       "config": {
         "policies": []
       }
