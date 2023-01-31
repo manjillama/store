@@ -7,52 +7,6 @@ import { GetServerSidePropsContext } from "next";
 import { getOrderByUuid } from "../../api/orders";
 import { IOrder } from "../../interface";
 
-// const customerOrder = {
-//   uuid: "24058248-95dc-4bdc-bbd6-1b3efac6d213",
-//   email: "lamamanjil@gmail.com",
-//   fullname: "Manjil Tamang",
-//   phoneNumber: "9803587436",
-//   totalPrice: 3000,
-//   city: "Kathmandu",
-//   address: "Jorpati",
-//   street: "Buddha chowk",
-//   status: "Processing",
-//   order: [
-//     {
-//       quantity: 1,
-//       price: 1000,
-//       totalPrice: 1000,
-//       size: "XL",
-//       product: {
-//         id: 12,
-//         name: "Yatri Zip-Up Hoodie",
-//         slug: "yatri-zip-up-hoodie",
-//         images: [
-//           {
-//             url: "https://yatri-store.s3.ap-south-1.amazonaws.com/f_61339537d4.PNG",
-//           },
-//         ],
-//       },
-//     },
-//     {
-//       quantity: 1,
-//       size: "L",
-//       price: 1000,
-//       totalPrice: 1000,
-//       product: {
-//         id: 12,
-//         name: "Yatri Zip-Up Hoodie",
-//         slug: "yatri-zip-up-hoodie",
-//         images: [
-//           {
-//             url: "https://yatri-store.s3.ap-south-1.amazonaws.com/f_61339537d4.PNG",
-//           },
-//         ],
-//       },
-//     },
-//   ],
-// };
-
 const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
   const {
     fullname,
@@ -174,7 +128,7 @@ const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
                           <strong>{item.size}</strong>
                         </td>
                         <td className="text-center">{item.price}</td>
-                        <td className="text-center">{item.quantity}</td>
+                        <td className="text-center">{item.quantities}</td>
                         <td className="text-right">{item.totalPrice}</td>
                       </tr>
                     ))}

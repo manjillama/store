@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import qs from "qs";
-import { IProduct } from "../interface";
+import { IOrder, IProduct } from "../interface";
 import { get, post } from "../utils/axios";
 
 export const getProductBySlug = (
@@ -30,8 +30,6 @@ export const searchProducts = (q: string) => {
   return get(`/products?${query}`);
 };
 
-export const createOrder = (
-  params = {}
-): Promise<AxiosResponse<IProduct[]>> => {
+export const createOrder = (params = {}): Promise<AxiosResponse<IOrder>> => {
   return post(`/orders`, params);
 };

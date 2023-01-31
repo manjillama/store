@@ -52,9 +52,11 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
     setSubmitting(true);
 
     createOrder(formProps)
-      .then(() => {
+      .then(({ data }) => {
+        console.log("Order", data);
+
         resetCart();
-        router.push("/success");
+        router.push("/success/" + data.uuid);
       })
       .catch(() =>
         alert(
