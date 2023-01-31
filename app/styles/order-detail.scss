@@ -1,0 +1,47 @@
+#orderDetailPage {
+  font-size: 0.9rem;
+  header {
+    padding-top: 20px;
+    background: url("https://d3j42yg2io56tq.cloudfront.net/p1-shoot-1.jpg");
+    background-size: cover;
+    background-position: center;
+    .order-w {
+      display: inline-block;
+      float: left;
+      max-width: 300px;
+      padding: 20px;
+      background: #fff;
+    }
+  }
+  .bod {
+    .info {
+      h3 {
+        margin: 8px 0;
+      }
+      ul > li {
+        line-height: 24px;
+      }
+    }
+    .order-total {
+      width: 100%;
+      max-width: 325px;
+      float: right;
+      background: #fafafa;
+      padding: 15px;
+
+      > div {
+        display: flex;
+        padding: 6px;
+        justify-content: space-between;
+      }
+    }
+    @media (max-width: 768px) {
+      .order-total {
+        max-width: 100%;
+      }
+    }
+    table > :not(caption) > * > * {
+      padding: 0.75rem !important;
+    }
+  }
+}

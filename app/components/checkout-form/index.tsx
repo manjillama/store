@@ -7,6 +7,7 @@ import { TextInput } from "../form/TextInput";
 import { SelectInput } from "../form/SelectInput";
 import { scrollToTop } from "../../utils";
 import { createOrder } from "../../api/products";
+import { resetCart } from "../../service/cart";
 
 const transformCartToOrderData = (cart: any) => {
   return cart.items.map((item: any) => ({
@@ -51,7 +52,10 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
     setSubmitting(true);
 
     createOrder(formProps)
-      .then(() => router.push("/success"))
+      .then(() => {
+        resetCart();
+        router.push("/success");
+      })
       .catch(() =>
         alert(
           "Something went wrong. Please contact Yatri support or try again later."
@@ -75,7 +79,7 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
           <br />
           <div className="c-field">
             <TextInput
-              label="Fullname"
+              label="Fullname*"
               type="text"
               name="fullname"
               value={fullname}
@@ -84,7 +88,7 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
             {validator.current.message("fullname", fullname, "required")}
 
             <TextInput
-              label="Email"
+              label="Email*"
               type="email"
               name="email"
               value={email}
@@ -94,7 +98,7 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
 
             <TextInput
               name="phoneNumber"
-              label="Phone Number"
+              label="Phone Number*"
               type="text"
               maxLength="10"
               value={phoneNumber}
@@ -118,7 +122,7 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
             />
             <TextInput
               name="address"
-              label="Address"
+              label="Address*"
               type="text"
               value={address}
               onChange={onChange}
@@ -126,14 +130,14 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
             {validator.current.message("addresss", address, "required")}
             <TextInput
               name="street"
-              label="Street"
+              label="Street / Landmark"
               type="text"
               value={street}
               onChange={onChange}
             />
           </div>
         </div>
-        <div className="inner-card">
+        {/* <div className="inner-card">
           <h2>Payment</h2>
           <br />
           <div>
@@ -161,10 +165,10 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
               For payment, please use the fonepay QR code above and transfer the{" "}
               <strong>TOTAL TO PAY</strong> amount and send in the payment
               screenshot to our support team at{" "}
-              <strong> +977 (980) 187-7447 (What&apos;sapp / Viber)</strong>.
+              <strong> +977 (980) 187-7447 (WhatsApp / Viber)</strong>.
             </p>
           </div>
-        </div>
+        </div> */}
         <button
           type="submit"
           className="btn btn-success"
@@ -176,16 +180,16 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
               style={{ position: "absolute", top: 10, left: 10 }}
             />
           )}
-          CONFIRFM
+          CONFIRM
         </button>
         <p className="text-muted" style={{ fontSize: "0.8rem" }}>
           By placing your order you agree to our{" "}
           <Link href="/">
-            <a className="link">privacy &amp; policy</a>
+            <a className="link">privacy</a>
           </Link>{" "}
           and{" "}
           <Link href="/">
-            <a className="link">returns policies</a>
+            <a className="link">return policies</a>
           </Link>
           . You also consent to some of your data being stored by Yatri
           Motorcycles, which may be used to make shopping experiences better for

@@ -80,6 +80,10 @@ function createNewCart() {
   return cart;
 }
 
+export function resetCart() {
+  createNewCart();
+}
+
 export function removeFromCartUsingIndex(index: number) {
   try {
     const cartStr = localStorage.getItem("cart");

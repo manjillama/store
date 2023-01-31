@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/orders/uuid/:uuid",
+      "handler": "orders.findUuid",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/orders/count",
       "handler": "order.count",
       "config": {

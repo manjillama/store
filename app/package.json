@@ -19,6 +19,7 @@
     "react-slick": "^0.28.1",
     "react-transition-group": "^4.4.2",
     "sass": "^1.43.3",
+    "sharp": "^0.31.3",
     "simple-react-validator": "^1.6.2"
   },
   "devDependencies": {

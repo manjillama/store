@@ -103,7 +103,12 @@ function NewIn() {
     fetchData();
   }, []);
 
-  if (!products) return <Loader />;
+  if (!products)
+    return (
+      <section>
+        <Loader />
+      </section>
+    );
 
   if (products.length < 3) return null;
   return (
@@ -156,7 +161,12 @@ function Featured() {
     fetchData();
   }, []);
 
-  if (!products) return <Loader />;
+  if (!products)
+    return (
+      <section>
+        <Loader />
+      </section>
+    );
 
   if (products.length < 3) return null;
   return (

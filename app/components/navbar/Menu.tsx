@@ -83,10 +83,14 @@ const Menu = ({
                 <Link href="/">About</Link>
               </li> */}
               <li>
-                <a href="/experience-center">Experience Center</a>
+                <a onClick={handleNavigation} href="/experience-center">
+                  Experience Center
+                </a>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <a onClick={handleNavigation} href="/contact">
+                  Contact
+                </a>
               </li>
             </ul>
           </div>

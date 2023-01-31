@@ -137,17 +137,13 @@ export default function LegalPrivacy() {
           </section>
           <hr />
           <section id="delivery-returns">
-            <h1 className="text-center">Delivery & Returns</h1>
+            <h1 className="text-center">Delivery and Returns</h1>
             <section style={{ paddingBottom: 0 }}>
               <h3>Delivery</h3>
-              <br />
               <p>
                 Free standard delivery option available to all all over Nepal.
               </p>
-            </section>
-            <section style={{ paddingBottom: 0 }}>
               <h3>Returns</h3>
-              <br />
               <p>
                 Items shipped from store.yatrimotorcycles.com can be returned
                 within 5 business days of delivery. However, there might be
