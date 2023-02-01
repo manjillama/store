@@ -48,9 +48,15 @@ const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
                 alt={"Yatri Payment QR code"}
               />
               <p style={{ fontSize: "0.8rem" }}>
-                For payment, please use the fonepay QR code above and transfer
-                the <strong>TOTAL TO PAY</strong> amount. For any inquiries
-                please contact our support team at
+                In case you missed the payment, please use the fonepay QR code
+                to transfer the{" "}
+                <button
+                  className="btn-chromeless link"
+                  onClick={() => window.scrollTo(0, document.body.scrollHeight)}
+                >
+                  <strong>TOTAL TO PAY</strong>
+                </button>{" "}
+                amount. For any inquiries please contact our support team at
                 <strong> +977 (980) 187-7447 (WhatsApp / Viber)</strong>.
               </p>
             </div>
@@ -66,11 +72,11 @@ const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
                 background: "#000",
               }}
             >
-              <h1>It&apos;s Ordered</h1>
+              <h1>It&apos;s Ordered!</h1>
               <p className="small">Code: {uuid}</p>
               <p>
                 Hi {fullname.split(" ")[0]}! - Thanks for your order, we hope
-                you enjoyed shopping with us
+                you enjoyed shopping with us.
               </p>
             </div>
             <div style={{ clear: "both" }}></div>

@@ -7,6 +7,7 @@ import PageHead from "../../components/page-head";
 import CheckoutForm from "../../components/checkout-form";
 import Loader from "../../components/commons";
 import { ICart, ICartItem } from "../../interface";
+import Navbar from "../../components/navbar";
 
 const deliveryCities = [
   { city: "Achham", price: 160 },
@@ -101,6 +102,7 @@ const Checkout = () => {
   if (cart.items.length <= 0)
     return (
       <>
+        <Navbar />
         <div className="e-bag nav-offset">
           <h2>Your bag is empty</h2>
           <p>
@@ -125,13 +127,6 @@ const Checkout = () => {
       ></PageHead>
       <div id="checkoutPage" className="container">
         <h1 className="text-center">Checkout</h1>
-        <div className="m-page" style={{ marginBottom: "0.6rem" }}>
-          <Link href="/cart">
-            <a className="link small" style={{ fontWeight: 500 }}>
-              Back to cart
-            </a>
-          </Link>
-        </div>
 
         <div className="m-page d-flex">
           <div className="l-card">

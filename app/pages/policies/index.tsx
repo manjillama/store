@@ -141,7 +141,8 @@ export default function LegalPrivacy() {
             <section style={{ paddingBottom: 0 }}>
               <h3>Delivery</h3>
               <p>
-                Free standard delivery option available to all all over Nepal.
+                Free standard delivery all over Nepal. Delivery terms will be 2
+                business days for inside valley and 5 days for outside
               </p>
               <h3>Returns</h3>
               <p>

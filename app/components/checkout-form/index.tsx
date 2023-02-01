@@ -8,6 +8,7 @@ import { SelectInput } from "../form/SelectInput";
 import { scrollToTop } from "../../utils";
 import { createOrder } from "../../api/products";
 import { resetCart } from "../../service/cart";
+import { RadioInput } from "../form";
 
 const transformCartToOrderData = (cart: any) => {
   return cart.items.map((item: any) => ({
@@ -41,20 +42,26 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
       autoForceUpdate: { forceUpdate: () => forceUpdate(1) },
     })
   );
+  const [currentPage, setCurrentPage] = useState<"information" | "payment">(
+    "information"
+  );
+  const [paymentCheck, setPaymentCheck] = useState(false);
 
-  function onSubmit(e: any) {
-    e.preventDefault();
+  function proceedToPayment() {
     if (!validator.current.allValid()) {
       scrollToTop();
       return validator.current.showMessages();
     }
+    setCurrentPage("payment");
+  }
+
+  function onSubmit(e: any) {
+    e.preventDefault();
 
     setSubmitting(true);
 
     createOrder(formProps)
       .then(({ data }) => {
-        console.log("Order", data);
-
         resetCart();
         router.push("/success/" + data.uuid);
       })
@@ -71,126 +78,182 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
     setFormProps({ ...formProps, [name]: value });
   }
 
+  function handlePaymentCheck(e: any) {
+    const { checked } = e.currentTarget;
+    console.log(checked);
+
+    setPaymentCheck(checked);
+  }
+
   const { fullname, email, phoneNumber, city, address, street } = formProps;
 
   return (
     <div>
+      <div style={{ marginBottom: "0.6rem" }}>
+        {currentPage === "information" && (
+          <Link href="/cart">
+            <a className="link small" style={{ fontWeight: 500 }}>
+              Back to cart
+            </a>
+          </Link>
+        )}
+        {currentPage === "payment" && (
+          <button
+            className="btn-chromeless"
+            onClick={() => setCurrentPage("information")}
+          >
+            <a className="link small" style={{ fontWeight: 500 }}>
+              Back to information
+            </a>
+          </button>
+        )}
+      </div>
       <form onSubmit={onSubmit}>
-        <div className="inner-card">
-          <h2>Your information</h2>
-          <br />
-          <div className="c-field">
-            <TextInput
-              label="Fullname*"
-              type="text"
-              name="fullname"
-              value={fullname}
-              onChange={onChange}
-            />
-            {validator.current.message("fullname", fullname, "required")}
+        {currentPage === "information" && (
+          <div className="inner-card">
+            <h2>Your information</h2>
+            <br />
+            <div className="c-field">
+              <TextInput
+                label="Fullname*"
+                type="text"
+                name="fullname"
+                value={fullname}
+                onChange={onChange}
+              />
+              {validator.current.message("fullname", fullname, "required")}
 
-            <TextInput
-              label="Email*"
-              type="email"
-              name="email"
-              value={email}
-              onChange={onChange}
-            />
-            {validator.current.message("email", email, "required|email")}
+              <TextInput
+                label="Email*"
+                type="email"
+                name="email"
+                value={email}
+                onChange={onChange}
+              />
+              {validator.current.message("email", email, "required|email")}
 
-            <TextInput
-              name="phoneNumber"
-              label="Phone Number*"
-              type="text"
-              maxLength="10"
-              value={phoneNumber}
-              onChange={onChange}
-            />
-            {validator.current.message(
-              "phoneNumber",
-              phoneNumber,
-              "required|phone"
-            )}
-            <SelectInput
-              label="City*"
-              name="city"
-              value={city}
-              onChange={onChange}
-              options={deliveryCities.map((deliveryCity: { city: string }) => ({
-                label: deliveryCity.city,
-                value: deliveryCity.city,
-              }))}
-              required
-            />
-            <TextInput
-              name="address"
-              label="Address*"
-              type="text"
-              value={address}
-              onChange={onChange}
-            />
-            {validator.current.message("addresss", address, "required")}
-            <TextInput
-              name="street"
-              label="Street / Landmark"
-              type="text"
-              value={street}
-              onChange={onChange}
-            />
-          </div>
-        </div>
-        {/* <div className="inner-card">
-          <h2>Payment</h2>
-          <br />
-          <div>
-            <div style={{ marginBottom: "1rem", textAlign: "center" }}>
-              <Image
-                priority
-                width={80}
-                height={25}
-                layout="intrinsic"
-                src={"/assets/fonepay-logo.png"}
-                alt={"Yatri Payment QR code"}
+              <TextInput
+                name="phoneNumber"
+                label="Phone Number*"
+                type="text"
+                maxLength="10"
+                value={phoneNumber}
+                onChange={onChange}
+              />
+              {validator.current.message(
+                "phoneNumber",
+                phoneNumber,
+                "required|phone"
+              )}
+              <SelectInput
+                label="City*"
+                name="city"
+                value={city}
+                onChange={onChange}
+                options={deliveryCities.map(
+                  (deliveryCity: { city: string }) => ({
+                    label: deliveryCity.city,
+                    value: deliveryCity.city,
+                  })
+                )}
+                required
+              />
+              <TextInput
+                name="address"
+                label="Address*"
+                type="text"
+                value={address}
+                onChange={onChange}
+              />
+              {validator.current.message("addresss", address, "required")}
+              <TextInput
+                name="street"
+                label="Street / Landmark"
+                type="text"
+                value={street}
+                onChange={onChange}
               />
             </div>
-            <div style={{ maxWidth: 220, margin: "0 auto" }}>
-              <Image
-                priority
-                width={"100%"}
-                height={"100%"}
-                layout="responsive"
-                src={"/assets/yatri-gibl.png"}
-                alt={"Yatri Payment QR code"}
-              />
-            </div>
-            <p style={{ fontSize: "0.8rem" }}>
-              For payment, please use the fonepay QR code above and transfer the{" "}
-              <strong>TOTAL TO PAY</strong> amount and send in the payment
-              screenshot to our support team at{" "}
-              <strong> +977 (980) 187-7447 (WhatsApp / Viber)</strong>.
-            </p>
+            <button
+              type="button"
+              className="btn btn-success"
+              style={{ position: "relative", width: "100%" }}
+              onClick={proceedToPayment}
+            >
+              PROCEED
+            </button>
           </div>
-        </div> */}
-        <button
-          type="submit"
-          className="btn btn-success"
-          style={{ position: "relative", width: "100%" }}
-        >
-          {submitting && (
+        )}
+        {currentPage === "payment" && (
+          <div className="inner-card">
+            <h2>Payment</h2>
+            <br />
+            <div>
+              <div style={{ marginBottom: "1rem", textAlign: "center" }}>
+                <Image
+                  priority
+                  width={80}
+                  height={25}
+                  layout="intrinsic"
+                  src={"/assets/fonepay-logo.png"}
+                  alt={"Yatri Payment QR code"}
+                />
+              </div>
+              <div style={{ maxWidth: 220, margin: "0 auto" }}>
+                <Image
+                  priority
+                  width={"100%"}
+                  height={"100%"}
+                  layout="responsive"
+                  src={"/assets/yatri-gibl.png"}
+                  alt={"Yatri Payment QR code"}
+                />
+              </div>
+              <p style={{ fontSize: "0.8rem" }}>
+                For payment, please use the fonepay QR code above and transfer
+                the <strong>TOTAL TO PAY</strong> amount.
+              </p>
+            </div>
+            <hr style={{ margin: "1rem 0" }} />
             <div
-              className="spi spi-light"
-              style={{ position: "absolute", top: 10, left: 10 }}
-            />
-          )}
-          CONFIRM
-        </button>
+              className="form-group"
+              style={{ display: "flex", alignItems: "flex-start" }}
+            >
+              <input
+                id="paymentCheck"
+                name="paymentCheck"
+                type="checkbox"
+                checked={paymentCheck}
+                onChange={handlePaymentCheck}
+                style={{ margin: "2px 8px 0px 0px", flexShrink: 0 }}
+              />
+              <label htmlFor="paymentCheck">
+                I have made the payment through fonepay QR code.
+              </label>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-success"
+              style={{ position: "relative", width: "100%" }}
+              disabled={!paymentCheck}
+            >
+              {submitting && (
+                <div
+                  className="spi spi-light"
+                  style={{ position: "absolute", top: 10, left: 10 }}
+                />
+              )}
+              CONFIRM
+            </button>
+          </div>
+        )}
         <p className="text-muted" style={{ fontSize: "0.8rem" }}>
           By placing your order you agree to our{" "}
-          <Link href="/">
+          <Link href="/policies">
             <a className="link">privacy</a>
           </Link>{" "}
           and{" "}
-          <Link href="/">
+          <Link href="/policies#delivery-returns">
             <a className="link">return policies</a>
           </Link>
           . You also consent to some of your data being stored by Yatri

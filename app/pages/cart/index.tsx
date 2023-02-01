@@ -55,10 +55,7 @@ const Cart = () => {
                     <div>{/* <FaTruck /> */}</div>
                     <div>
                       <h4>Free Standard Delivery</h4>
-                      <p>
-                        Free standard delivery option available to all all over
-                        Nepal.
-                      </p>
+                      <p>Free standard delivery all over Nepal.</p>
                       <span>More info</span>
                     </div>
                   </a>

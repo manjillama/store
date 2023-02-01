@@ -32,8 +32,8 @@ const CartItem = ({ item, index }: { item: any; index: number }) => {
             <a style={{ border: "1px solid #eeeff0", display: "block" }}>
               <Image
                 priority
-                width={108}
-                height={108}
+                width={110}
+                height={110}
                 src={product.images[0].url}
                 alt={product.name}
               />

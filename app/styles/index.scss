@@ -70,7 +70,8 @@ button {
   text-decoration: none;
   transition: color 0.5s, background-color 0.5s, opacity 0.5s;
 }
-a.link {
+a.link,
+button.link {
   color: #277bba;
   &:hover {
     text-decoration: underline;
