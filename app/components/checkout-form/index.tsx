@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import SimpleReactValidator from "simple-react-validator";
@@ -20,12 +20,17 @@ const transformCartToOrderData = (cart: any) => {
   }));
 };
 
-const CheckoutForm = ({ cart, deliveryCities }: any) => {
+const CheckoutForm = ({
+  cart,
+  deliveryCities,
+  deliveryCity,
+  setDeliveryCity,
+}: any) => {
   const [formProps, setFormProps] = useState({
     fullname: "",
     email: "",
     phoneNumber: "",
-    city: "EC Pickup (Baluwatar)",
+    city: deliveryCity,
     address: "",
     street: "",
     order: transformCartToOrderData(cart),
@@ -46,6 +51,10 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
     "information"
   );
   const [paymentCheck, setPaymentCheck] = useState(false);
+
+  useEffect(() => {
+    setDeliveryCity(formProps.city);
+  }, [formProps.city]);
 
   function proceedToPayment() {
     if (!validator.current.allValid()) {
@@ -150,29 +159,42 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
                 name="city"
                 value={city}
                 onChange={onChange}
-                options={deliveryCities.map(
-                  (deliveryCity: { city: string }) => ({
+                options={[
+                  {
+                    label: "EC Pickup (Baluwatar)",
+                    value: "EC Pickup (Baluwatar)",
+                  },
+                  {
+                    label: "__________________",
+                    value: "",
+                    disabled: true,
+                  },
+                  ...deliveryCities.map((deliveryCity: { city: string }) => ({
                     label: deliveryCity.city,
                     value: deliveryCity.city,
-                  })
-                )}
+                  })),
+                ]}
                 required
               />
-              <TextInput
-                name="address"
-                label="Address*"
-                type="text"
-                value={address}
-                onChange={onChange}
-              />
-              {validator.current.message("addresss", address, "required")}
-              <TextInput
-                name="street"
-                label="Street / Landmark"
-                type="text"
-                value={street}
-                onChange={onChange}
-              />
+              {!city.toLowerCase().includes("pickup") && (
+                <>
+                  <TextInput
+                    name="address"
+                    label="Address*"
+                    type="text"
+                    value={address}
+                    onChange={onChange}
+                    required
+                  />
+                  <TextInput
+                    name="street"
+                    label="Street / Landmark"
+                    type="text"
+                    value={street}
+                    onChange={onChange}
+                  />
+                </>
+              )}
             </div>
             <button
               type="button"

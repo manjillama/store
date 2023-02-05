@@ -32,7 +32,6 @@ const deliveryCities = [
   { city: "Dolakha", price: 160 },
   { city: "Dolpa", price: 160 },
   { city: "Doti", price: 160 },
-  { city: "EC Pickup (Baluwatar)", price: 0 },
   { city: "Gorkha", price: 160 },
   { city: "Gulmi", price: 160 },
   { city: "Humla", price: 160 },
@@ -97,6 +96,7 @@ const Checkout = () => {
   useEffect(() => {
     setCart(getCart());
   }, []);
+  const [deliveryCity, setDeliveryCity] = useState("EC Pickup (Baluwatar)");
 
   if (!cart) return <Loader />;
 
@@ -131,7 +131,12 @@ const Checkout = () => {
 
         <div className="m-page d-flex">
           <div className="l-card">
-            <CheckoutForm deliveryCities={deliveryCities} cart={cart} />
+            <CheckoutForm
+              deliveryCities={deliveryCities}
+              cart={cart}
+              deliveryCity={deliveryCity}
+              setDeliveryCity={setDeliveryCity}
+            />
             {/*
               <div className="inner-card">
                 <h2>Delivery Option</h2>
@@ -184,7 +189,10 @@ const Checkout = () => {
                     </ul>
                   </div>
 
-                  <div className="checkout-total">
+                  <div
+                    className="checkout-total"
+                    style={{ fontSize: "0.85rem" }}
+                  >
                     <table>
                       <tbody>
                         <tr>
@@ -195,7 +203,11 @@ const Checkout = () => {
                         </tr>
                         <tr>
                           <td>Delivery</td>
-                          <td className="text-right text-success">Free</td>
+                          <td className="text-right text-success">
+                            {deliveryCity.toLowerCase().includes("pickup")
+                              ? deliveryCity
+                              : "Free"}
+                          </td>
                         </tr>
                         <tr className="t-main">
                           <td>TOTAL TO PAY</td>

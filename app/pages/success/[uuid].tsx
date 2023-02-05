@@ -56,8 +56,7 @@ const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
                 >
                   <strong>TOTAL TO PAY</strong>
                 </button>{" "}
-                amount. For any inquiries please contact our support team at
-                <strong> +977 (980) 187-7447 (WhatsApp / Viber)</strong>.
+                amount. Please mention your name in the payment remarks.
               </p>
             </div>
             <div style={{ clear: "both" }}></div>
@@ -75,8 +74,8 @@ const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
               <h1>It&apos;s Ordered!</h1>
               <p className="small">Code: {uuid}</p>
               <p>
-                Hi {fullname.split(" ")[0]}! - Thanks for your order, we hope
-                you enjoyed shopping with us.
+                Hi {fullname.split(" ")[0]}! - Thanks for your order, please
+                save this link to track your order status.
               </p>
             </div>
             <div style={{ clear: "both" }}></div>
@@ -101,7 +100,10 @@ const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
               <ul className="list-nostyle">
                 <li>{fullname}</li>
                 <li>{phoneNumber}</li>
-                <li>{address + ", " + street}</li>
+                <li>
+                  {address ? address : ""}
+                  {street ? `, ${street}` : ""}
+                </li>
                 <li>{city}</li>
               </ul>
             </div>
@@ -148,7 +150,9 @@ const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
                 </div>
                 <div>
                   <span>Delivery</span>
-                  <span className="text-success">Free</span>
+                  <span className="text-success">
+                    {city.toLowerCase().includes("pickup") ? city : "Free"}
+                  </span>
                 </div>
                 <div className="t-main" style={{ fontWeight: 600 }}>
                   <span>
@@ -169,6 +173,13 @@ const Success = ({ customerOrder }: { customerOrder: IOrder }) => {
               </a>
             </Link>
           </div>
+          <p
+            className="small"
+            style={{ padding: "2rem 0", margin: 0, textAlign: "center" }}
+          >
+            For any inquiries please contact our support team at{" "}
+            <strong> +977 (980) 187-7447</strong> (WhatsApp / Viber).
+          </p>
         </div>
       </div>
     </>

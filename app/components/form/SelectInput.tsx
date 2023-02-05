@@ -5,7 +5,11 @@ interface Props {
   name: string;
   value: any;
   onChange: (e: ChangeEvent<any>) => any;
-  options: { value: string | number; label: string | number }[];
+  options: {
+    value: string | number;
+    label: string | number;
+    disabled?: boolean;
+  }[];
   [key: string]: any;
 }
 export const SelectInput = ({
@@ -28,7 +32,11 @@ export const SelectInput = ({
       {...otherProps}
     >
       {options.map((option) => (
-        <option key={option.label} value={option.value}>
+        <option
+          key={option.label}
+          value={option.value}
+          disabled={option.disabled ? true : false}
+        >
           {option.label}
         </option>
       ))}
