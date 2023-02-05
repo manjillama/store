@@ -24,74 +24,74 @@ const Cart = () => {
         description="Shopping Bag | Yatri Motorcycles Official Store`"
       ></PageHead>
       <Navbar />
-      <div
-        id="bagPage"
-        className="container-l nav-offset"
-        style={{ paddingBottom: "2rem" }}
-      >
-        <div className="m-bag">
-          {cart.items.length > 0 ? (
-            <div className="f-bag d-flex flex-wrap">
-              <div className="bag-item-wrapper">
-                <div className="bag-content">
-                  <div className="title-holder d-flex flex-wrap">
-                    <h2>MY BAG</h2>
-                    <small
-                      className="text-muted"
-                      style={{ fontSize: "0.7rem" }}
-                    >
-                      Items in your cart are saved only for an hour
-                    </small>
+      <div id="bagPage">
+        <div
+          className="container-l nav-offset"
+          style={{ paddingBottom: "2rem" }}
+        >
+          <div className="m-bag">
+            {cart.items.length > 0 ? (
+              <div className="f-bag d-flex flex-wrap">
+                <div className="bag-item-wrapper">
+                  <div className="bag-content">
+                    <div className="title-holder d-flex flex-wrap">
+                      <h2>MY BAG</h2>
+                      <small
+                        className="text-muted"
+                        style={{ fontSize: "0.7rem" }}
+                      >
+                        Items in your cart are saved only for an hour
+                      </small>
+                    </div>
+                    <ul className="bag-items list-nostyle">
+                      {cart.items.map((item, i) => (
+                        <CartItem item={item} key={i} index={i} />
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="bag-items list-nostyle">
-                    {cart.items.map((item, i) => (
-                      <CartItem item={item} key={i} index={i} />
-                    ))}
-                  </ul>
+
+                  <Link href="/policies#delivery-returns">
+                    <a className="bag-panel d-flex">
+                      <div>{/* <FaTruck /> */}</div>
+                      <div>
+                        <h4>Free Standard Delivery</h4>
+                        <p>Free standard delivery all over Nepal.</p>
+                        <span>More info</span>
+                      </div>
+                    </a>
+                  </Link>
+
+                  <Link href="/policies#delivery-returns">
+                    <a className="bag-panel d-flex">
+                      <div>{/* <IoMdUndo /> */}</div>
+                      <div>
+                        <h4>Free and easy returns</h4>
+                        <p>
+                          Items shipped from store.yatrimotorcycles.com can be
+                          returned within 5 business days of delivery. However,
+                          there might be items that may be non-returnable or
+                          non-refundable.
+                        </p>
+                        <span>More info</span>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
-
-                <Link href="/policies#delivery-returns">
-                  <a className="bag-panel d-flex">
-                    <div>{/* <FaTruck /> */}</div>
-                    <div>
-                      <h4>Free Standard Delivery</h4>
-                      <p>Free standard delivery all over Nepal.</p>
-                      <span>More info</span>
-                    </div>
-                  </a>
-                </Link>
-
-                <Link href="/policies#delivery-returns">
-                  <a className="bag-panel d-flex">
-                    <div>{/* <IoMdUndo /> */}</div>
-                    <div>
-                      <h4>Free and easy returns</h4>
-                      <p>
-                        Items shipped from store.yatrimotorcycles.com can be
-                        returned within 5 business days of delivery. However,
-                        there might be items that may be non-returnable or
-                        non-refundable.
-                      </p>
-                      <span>More info</span>
-                    </div>
-                  </a>
-                </Link>
-              </div>
-              <div className="bag-checkout">
-                <div className="bag-content">
-                  <div className="total-wrapper">
-                    <div className="c-title">
-                      <h2>Total</h2>
-                    </div>
-                    <div className="c-info">
-                      <p>
-                        <span className="sub-t">Sub-Total</span>
-                        <span className="price-t">
-                          Rs. {subTotal(cart.items).toLocaleString()}
-                        </span>
-                      </p>
-                    </div>
-                    {/*
+                <div className="bag-checkout">
+                  <div className="bag-content">
+                    <div className="total-wrapper">
+                      <div className="c-title">
+                        <h2>Total</h2>
+                      </div>
+                      <div className="c-info">
+                        <p>
+                          <span className="sub-t">Sub-Total</span>
+                          <span className="price-t">
+                            Rs. {subTotal(cart.items).toLocaleString()}
+                          </span>
+                        </p>
+                      </div>
+                      {/*
                   <div className="c-info">
                     <p>
                       <span className="sub-t">Delivery</span>
@@ -101,22 +101,24 @@ const Cart = () => {
                     </p>
                   </div>
                   */}
-                    <div>
-                      <Link href="/checkout">
-                        <a className="btn checkout-btn btn-success">CHECKOUT</a>
-                      </Link>
+                      <div>
+                        <Link href="/checkout">
+                          <a className="btn checkout-btn btn-success">
+                            CHECKOUT
+                          </a>
+                        </Link>
 
-                      {/* <br />
+                        {/* <br />
                   <br />
                   <p>Got a discount code? Add it in the next step.</p> */}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="e-bag">
-              {/* <span>
+            ) : (
+              <div className="e-bag">
+                {/* <span>
             <svg className="svg-icon" viewBox="0 0 20 20">
               <path
                 fill="none"
@@ -124,21 +126,22 @@ const Cart = () => {
               ></path>
             </svg>
           </span> */}
-              <h2>Your bag is empty</h2>
-              <p>
-                What are you waiting for? Let&apos;s spice up your bag with
-                awesomeness
-              </p>
-              <Link href="/">
-                <a className="btn btn-success">
-                  <strong>Continue Shopping</strong>
-                </a>
-              </Link>
-            </div>
-          )}
+                <h2>Your bag is empty</h2>
+                <p>
+                  What are you waiting for? Let&apos;s spice up your bag with
+                  awesomeness
+                </p>
+                <Link href="/">
+                  <a className="btn btn-success">
+                    <strong>Continue Shopping</strong>
+                  </a>
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
+        <Footer theme="dark" />
       </div>
-      <Footer theme="dark" />
     </>
   );
 };

@@ -25,7 +25,7 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
     fullname: "",
     email: "",
     phoneNumber: "",
-    city: "Kathmandu",
+    city: "EC Pickup",
     address: "",
     street: "",
     order: transformCartToOrderData(cart),
@@ -211,7 +211,8 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
               </div>
               <p style={{ fontSize: "0.8rem" }}>
                 For payment, please use the fonepay QR code above and transfer
-                the <strong>TOTAL TO PAY</strong> amount.
+                the <strong>TOTAL TO PAY</strong> amount. Please mention your
+                name in the payment remarks.
               </p>
             </div>
             <hr style={{ margin: "1rem 0" }} />
@@ -243,7 +244,7 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
                   style={{ position: "absolute", top: 10, left: 10 }}
                 />
               )}
-              CONFIRM
+              PLACE ORDER
             </button>
           </div>
         )}

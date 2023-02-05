@@ -32,6 +32,7 @@ const deliveryCities = [
   { city: "Dolakha", price: 160 },
   { city: "Dolpa", price: 160 },
   { city: "Doti", price: 160 },
+  { city: "EC Pickup (Baluwatar)", price: 0 },
   { city: "Gorkha", price: 160 },
   { city: "Gulmi", price: 160 },
   { city: "Humla", price: 160 },

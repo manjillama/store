@@ -32,13 +32,9 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "Processing",
-        "Delivered",
-        "Cancelled"
-      ],
+      "enum": ["Processing", "Confirmed", "Shipped", "Delivered", "Cancelled"],
       "default": "Processing",
-      "required": false
+      "required": true
     },
     "uuid": {
       "type": "uid"
