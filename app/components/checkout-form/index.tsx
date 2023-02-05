@@ -25,7 +25,7 @@ const CheckoutForm = ({ cart, deliveryCities }: any) => {
     fullname: "",
     email: "",
     phoneNumber: "",
-    city: "EC Pickup",
+    city: "EC Pickup (Baluwatar)",
     address: "",
     street: "",
     order: transformCartToOrderData(cart),
