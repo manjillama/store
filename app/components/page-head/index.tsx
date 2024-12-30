@@ -1,9 +1,10 @@
 import Head from 'next/head';
+import { APP } from '../../constants';
 
 const PageHead = ({
   title,
   description,
-  image = 'https://s3.ap-south-1.amazonaws.com/yatri.static/ec.jpg',
+  image = APP.IMAGE,
   noIndex,
 }: {
   title: string;

@@ -8,6 +8,7 @@ import CheckoutForm from "../../components/checkout-form";
 import Loader from "../../components/commons";
 import { ICart, ICartItem } from "../../interface";
 import Navbar from "../../components/navbar";
+import { APP } from "../../constants";
 
 const deliveryCities = [
   { city: "Achham", price: 160 },
@@ -120,8 +121,8 @@ const Checkout = () => {
   return (
     <>
       <PageHead
-        title="Checkout | Yatri Motorcycles Official Store"
-        description="Checkout | Yatri Motorcycles Official Store`"
+        title={`Checkout | ${APP.NAME} Official Store`}
+        description={`Checkout | ${APP.NAME} Official Store`}
       ></PageHead>
       <div id="checkoutPage" className="container">
         <h1 className="text-center">Checkout</h1>

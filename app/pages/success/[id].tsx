@@ -6,6 +6,7 @@ import PageHead from "../../components/page-head";
 import { GetServerSidePropsContext } from "next";
 import { getOrderByDocumentId } from "../../service/orderService";
 import Order from "../../models/Order";
+import { APP } from "../../constants";
 
 const Success = ({ customerOrder }: { customerOrder: Order }) => {
   const {
@@ -22,8 +23,8 @@ const Success = ({ customerOrder }: { customerOrder: Order }) => {
   return (
     <>
       <PageHead
-        title="Order Complete | Yatri Motorcycles Official Apparel Storee"
-        description="Order Complete | Yatri Motorcycles Official Apparel Store"
+        title={`Order Complete | ${APP.NAME} Official Apparel Storee`}
+        description={`Order Complete | ${APP.NAME} Official Apparel Store`}
       />
       <div id="orderDetailPage">
         <header className="mjl-fluid">
@@ -36,7 +37,7 @@ const Success = ({ customerOrder }: { customerOrder: Order }) => {
                   height={25}
                   layout="intrinsic"
                   src={"/assets/fonepay-logo.png"}
-                  alt={"Yatri Payment QR code"}
+                  alt={"Payment QR code"}
                 />
               </div>
               <Image
@@ -44,8 +45,8 @@ const Success = ({ customerOrder }: { customerOrder: Order }) => {
                 width={"100%"}
                 height={"100%"}
                 layout="responsive"
-                src={"/assets/yatri-gibl.png"}
-                alt={"Yatri Payment QR code"}
+                src={"/assets/gibl.png"}
+                alt={"Payment QR code"}
               />
               <p style={{ fontSize: "0.8rem" }}>
                 In case you missed the payment, please use the fonepay QR code

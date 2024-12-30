@@ -11,7 +11,7 @@ export interface IProduct {
   slug: string;
   isFeatured: boolean;
   stock: number;
-  images: { url: string; caption: string; alternativeText: string }[];
+  images?: { url: string; caption: string; alternativeText: string }[];
   brand: {
     name: string;
   };

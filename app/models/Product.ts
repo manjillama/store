@@ -132,7 +132,9 @@ export default class Product {
     newProduct.description = product.description;
     newProduct.isFeatured = product.isFeatured;
     newProduct.stock = product.stock;
-    newProduct.images = product.images.map((image) => image.url);
+    newProduct.images = product.images
+      ? product.images.map((image) => image.url)
+      : ["/assets/placeholder.jpg"];
     newProduct.collections = product.collections.map((collection) => ({
       name: collection.name,
       slug: collection.slug,

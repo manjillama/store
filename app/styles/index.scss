@@ -4,7 +4,6 @@
 @import "./item-card.scss";
 @import "./product.scss";
 @import "./collection.scss";
-@import "./mailerlite.scss";
 @import "./contact.scss";
 @import "./experience-center.scss";
 @import "./side-cart.scss";
@@ -32,11 +31,11 @@ body {
   // -moz-osx-font-smoothing: grayscale;
   // -webkit-font-smoothing: antialiased;
   -webkit-text-stroke: 1;
-  font-family: "Barlow", sans-serif;
-  font-size: 17px;
+  font-family: "Open Sans", serif;
+  font-size: 16px;
   font-weight: 400;
   margin: 0;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.04rem;
   background-color: #0f0f0f;
   color: #131415;
   -moz-osx-font-smoothing: grayscale;

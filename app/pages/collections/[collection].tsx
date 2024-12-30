@@ -7,6 +7,7 @@ import PageHead from "../../components/page-head";
 import { slugToString } from "../../utils";
 import Product from "../../models/Product";
 import { getProducts } from "../../service/productService";
+import { APP } from "../../constants";
 
 const Collection = ({
   params,
@@ -35,7 +36,7 @@ const Collection = ({
   return (
     <>
       <PageHead
-        title={`${collection} | Yatri Motorcycles Official Store`}
+        title={`${collection} | ${APP.NAME} Official Store`}
         description={collection}
       ></PageHead>
       <Navbar />

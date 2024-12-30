@@ -4,13 +4,14 @@ import Link from "next/link";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import PageHead from "../components/page-head";
+import { APP } from "../constants";
 
 const About = () => {
   return (
     <div className="ec-page">
       <PageHead
-        title="Motorcycles, Casual and Accessories Clothing | Yatri Motorcycles Official Store"
-        description="Shop, Learn and Chill | Yatri Motorcycles Official Store"
+        title={`${APP.TITLE} | ${APP.NAME} Official Store`}
+        description={`${APP.DESCRIPTION} | ${APP.NAME} Official Store`}
       ></PageHead>
       <Navbar />
       <header className="banner">
@@ -18,16 +19,15 @@ const About = () => {
           <Image
             priority
             layout="fill"
-            src={`/assets/ec.jpg`}
+            src={`/assets/background.jpg`}
             alt=""
             className="img-cover"
           />
           <div className="overlay-dark" />
           <div className="caption container-l">
-            <h3>Experience Center</h3>
+            <h3>Store</h3>
             <p>
-              Visit our Experience Center to learn about products in-depth &amp;
-              experience Yatri.
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
             </p>
             <Link href="/contact">
               <a
@@ -46,16 +46,15 @@ const About = () => {
             <div className="ec-left">
               <Image
                 layout="fill"
-                src="/assets/ec1.jpg"
+                src="/assets/background.jpg"
                 alt=""
                 objectFit="cover"
               />
             </div>
             <div className="ec-right">
-              <h4>EXPERIENCE YATRI</h4>
+              <h4>Lorem Ipsum</h4>
               <p>
-                An Experience center where you can learn about the products
-                in-depth and experience Yatri.
+                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
               </p>
             </div>
           </div>
@@ -63,16 +62,15 @@ const About = () => {
             <div className="ec-left">
               <Image
                 layout="fill"
-                src="/assets/ec3.jpg"
+                src="/assets/background.jpg"
                 alt=""
                 objectFit="cover"
               />
             </div>
             <div className="ec-right">
-              <h4>SHOWCASE ENGINEERING</h4>
+              <h4>Lorem Ipsum</h4>
               <p>
-                A space where we celebrate engineering and showcase the extent
-                of ground up development in the Yatri products.
+                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
               </p>
             </div>
           </div>
@@ -80,16 +78,15 @@ const About = () => {
             <div className="ec-left">
               <Image
                 layout="fill"
-                src="/assets/ec2.jpg"
+                src="/assets/background.jpg"
                 alt=""
                 objectFit="cover"
               />
             </div>
             <div className="ec-right">
-              <h4>HANGOUT SPACE</h4>
+              <h4>Lorem Ipsum</h4>
               <p>
-                A chillout hangout space for our community. Treat yourself and
-                your friends with a nice cup of coffee and just enjoy!
+                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
               </p>
             </div>
           </div>

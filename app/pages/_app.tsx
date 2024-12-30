@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import Script from "next/script";
 import "../styles/index.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -23,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
         <link
@@ -48,11 +47,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div className="my-app">
         <Component {...pageProps} />
       </div>
-      <Script
-        src="https://static.mailerlite.com/js/w/webforms.min.js?v0c75f831c56857441820dcec3163967c"
-        type="text/javascript"
-      ></Script>
-      <Script src="/assets/script.js"></Script>
     </>
   );
 }

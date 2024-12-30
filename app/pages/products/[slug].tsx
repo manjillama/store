@@ -17,6 +17,7 @@ import { addItemToCart } from "../../service/cartService";
 import Navbar from "../../components/navbar";
 import { getProductBySlug, getProducts } from "../../service/productService";
 import Product from "../../models/Product";
+import { APP } from "../../constants";
 
 const ProductView = ({ product }: { product: Product }) => {
   const {
@@ -112,7 +113,7 @@ const ProductView = ({ product }: { product: Product }) => {
   return (
     <>
       <PageHead
-        title={`${name} | Yatri Motorcycles Offical Store`}
+        title={`${name} | ${APP.NAME} Offical Store`}
         description={description}
       ></PageHead>
       <Navbar />

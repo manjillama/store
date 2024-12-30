@@ -68,7 +68,7 @@ const Navbar = () => {
               >
                 <Link href="/">
                   <a>
-                    <img width="70" src="/assets/logo.png" alt="Logo" />
+                    <img width="45" src="/assets/logo.png" alt="Logo" />
                   </a>
                 </Link>
               </div>

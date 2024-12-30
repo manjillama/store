@@ -15,13 +15,14 @@ import Navbar from "../components/navbar";
 import PageHead from "../components/page-head";
 import { ICtaCarousel } from "../interface";
 import Product from "../models/Product";
+import { APP } from "../constants";
 
 const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
   return (
     <div>
       <PageHead
-        title="Motorcycles, Casual and Accessories Clothing | Yatri Motorcycles Official Store"
-        description="Yatri Motorcycles online store: clothing, helmets, accessories and merchandising by Yatri Motorcycles."
+        title={`${APP.TITLE} | ${APP.NAME} Official Store`}
+        description={`${APP.DESCRIPTION} | ${APP.NAME} Official Store`}
       ></PageHead>
       <Navbar />
       <header className="banner">
@@ -64,23 +65,23 @@ const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
         </Carousel>
       </header>
       <main className="container-l">
-        {/* <NewIn /> */}
+        <NewIn />
 
-        {/* <section>
+        <section>
           <img
-            src="/assets/banner/banner-4.webp"
+            src="/assets/banner.jpg"
             alt="Apparels Banner"
             className="img-fluid"
           />
           <h2 className="section-title" style={{ marginTop: '1rem' }}>
-            Cheer for YATRI!
+            Lorem ipsum dolor
           </h2>
           <p style={{ margin: 0 }}>
-            Prepare to experience a whole host of emotions with the Yatri Team
-            in the range of Yatri P1 clothing. Signature Yatri turquoise colours
-            and contemporary designs: bring your best style to the track.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Distinctio consectetur esse minima, soluta minus molestiae provident in incidunt iure sunt repellat veritatis qui tempora repudiandae ullam voluptatem itaque. Iure, incidunt!
+            Ullam est eos dicta a eius.
           </p>
-        </section> */}
+        </section>
 
         <Featured />
       </main>
@@ -92,7 +93,6 @@ const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
 
 function NewIn() {
   const [products, setProducts] = useState<Product[] | null>(null);
-  // products?created_at_gte=2021-08-07
   useEffect(() => {
     async function fetchData() {
       const product = await getProducts({
@@ -169,7 +169,7 @@ function Featured() {
       </section>
     );
 
-  // if (products.length < 3) return null;
+  if (products.length < 3) return null;
   return (
     <section>
       <h2 className="section-title">Featured</h2>

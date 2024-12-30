@@ -1,12 +1,13 @@
 import PageHead from "../../components/page-head";
 import Wrapper from "../../components/wrapper";
+import { APP } from "../../constants";
 
 export default function LegalPrivacy() {
   return (
     <>
       <PageHead
-        title="Privacy & Policy | Yatri Motorcycles Official Store"
-        description="General inquiries: info@yatrimotorcycles.com, Baluwatar Thirbam Sadak, Kathmandu 44600, Kathmandu, Nepal"
+        title={`Privacy & Policy | ${APP.NAME} Official Store`}
+        description={`General inquiries: ${APP.EMAIL_ADDRESS}, ${APP.ADDRESS}`}
       ></PageHead>
       <Wrapper hideNewsletter>
         <div className="container-md">
@@ -21,8 +22,7 @@ export default function LegalPrivacy() {
               </p>
               <h4>Information We May Collect</h4>
               <p>
-                We may collect information related to you or your use of Yatri
-                vehicle and services in the following manner.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               </p>
               <h4 className="text-muted">About you or your device</h4>
               <p>
@@ -64,7 +64,7 @@ export default function LegalPrivacy() {
                 From time to time, we may send administrative information to
                 you, such as information regarding our products and services,
                 and changes to our terms, conditions, and policies. Due to this
-                information being important to your interaction with Yatri, you
+                information being important to your interaction with {APP.NAME}, you
                 may not opt out of receiving these communications.
               </p>
               <p>
@@ -74,20 +74,8 @@ export default function LegalPrivacy() {
                 purchase, and provide you with related customer service.
               </p>
               <p>
-                To provide service to your Yatri product, such as to deliver
-                over-the-air updates to your product.
-              </p>
-              <p>
                 To analyze and improve the safety and security of our products
                 and services.
-              </p>
-              <p>
-                Except as described above, Yatri may use or share non-personally
-                identifiable information for any purpose, such as for
-                operational or research purposes, for industry analysis, to
-                improve or modify our products and services, to better tailor
-                our products and services to your needs, and where legally
-                required.
               </p>
               <h4>Sharing Your Information</h4>
               <p>
@@ -104,9 +92,9 @@ export default function LegalPrivacy() {
               </p>
               <p>
                 With other third party business partners to the extent that they
-                are involved in the purchase, lease, or service of your Yatri
+                are involved in the purchase, lease, or service of your {APP.NAME}
                 products. We share limited information from or about you or your
-                Yatri products to allow you to take advantage of those services
+                {APP.NAME} products to allow you to take advantage of those services
                 if you elect to utilize them, with such partners as finance
                 institutions, permitting authorities and insurance companies.
               </p>
@@ -118,7 +106,7 @@ export default function LegalPrivacy() {
                 an appointment for &apos;Non-Data Sharing&apos;.
               </p>
               <p>
-                Yatri may transfer and disclose information, including
+                {APP.NAME} may transfer and disclose information, including
                 information that may or may not personally identify you, to
                 third parties to comply with a legal obligation (including, but
                 not limited to, subpoenas or other court orders); when we
@@ -129,7 +117,7 @@ export default function LegalPrivacy() {
                 to respond to an emergency; to prevent or stop activity we may
                 consider to be, or to pose a risk of being, illegal, unethical
                 or legally actionable; or to protect the rights, property,
-                safety, or security of our products and services, Yatri, third
+                safety, or security of our products and services, {APP.NAME}, third
                 parties, visitors, or the public, as determined by us in our
                 sole discretion.
               </p>
@@ -141,26 +129,19 @@ export default function LegalPrivacy() {
             <section style={{ paddingBottom: 0 }}>
               <h3>Delivery</h3>
               <p>
-                Free standard delivery all over Nepal. Delivery terms will be 2
-                business days for inside valley and 5 days for outside
+                Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi.
               </p>
               <h3>Returns</h3>
               <p>
-                Items shipped from store.yatrimotorcycles.com can be returned
+                Items shipped from {process.env.NEXT_PUBLIC_URL?.split("//")[1]} can be returned
                 within 5 business days of delivery. However, there might be
                 items that may be non-returnable or non-refundable.
               </p>
               <p>
-                Yatri Motorcycles third party accessories like helmets and
-                goggles are non-returnable.
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.
               </p>
               <p>
-                Yatri Originals (clothing) are eligible for return (wrong fit)
-                but are non-refundable. Condition for return: The product must
-                be unused, unwashed and without any changes from the originally
-                shipped product. If you choose to use our pick-up service
-                (available inside Kathmandu valley), you will have to bear the
-                subsequent pick-up and drop service cost.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
             </section>
           </section>

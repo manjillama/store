@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar";
 import PageHead from "../../components/page-head";
 import { searchProducts } from "../../service/productService";
 import Product from "../../models/Product";
+import { APP } from "../../constants";
 
 const Search = ({
   params,
@@ -37,8 +38,8 @@ const Search = ({
   return (
     <>
       <PageHead
-        title={`${params.q} | Yatri Motorcycles Official Store`}
-        description="Yatri Motorcycles online store: clothing, helmets, accessories and merchandising by Yatri Motorcycles."
+        title={`${params.q} | ${APP.NAME} Official Store`}
+        description={APP.DESCRIPTION}
       ></PageHead>
       <Navbar />
       <div className="collection-page container-l nav-offset">

@@ -7,6 +7,7 @@ import Footer from "../../components/footer";
 import PageHead from "../../components/page-head";
 import Navbar from "../../components/navbar";
 import { ICart, ICartItem } from "../../interface";
+import { APP } from "../../constants";
 
 const Cart = () => {
   const [cart, setCart] = useState<ICart | null>(null);
@@ -20,8 +21,8 @@ const Cart = () => {
   return (
     <>
       <PageHead
-        title="Shopping Bag | Yatri Motorcycles Official Store"
-        description="Shopping Bag | Yatri Motorcycles Official Store`"
+        title={`Shopping Bag | ${APP.NAME} Official Store`}
+        description={`Shopping Bag | ${APP.NAME} Official Store`}
       ></PageHead>
       <Navbar />
       <div id="bagPage">
@@ -55,7 +56,7 @@ const Cart = () => {
                       <div>{/* <FaTruck /> */}</div>
                       <div>
                         <h4>Free Standard Delivery</h4>
-                        <p>Free standard delivery all over Nepal.</p>
+                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
                         <span>More info</span>
                       </div>
                     </a>
@@ -67,10 +68,8 @@ const Cart = () => {
                       <div>
                         <h4>Free and easy returns</h4>
                         <p>
-                          Items shipped from store.yatrimotorcycles.com can be
-                          returned within 5 business days of delivery. However,
-                          there might be items that may be non-returnable or
-                          non-refundable.
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                         </p>
                         <span>More info</span>
                       </div>

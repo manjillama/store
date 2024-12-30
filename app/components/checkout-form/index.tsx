@@ -8,6 +8,7 @@ import { SelectInput } from "../form/SelectInput";
 import { scrollToTop } from "../../utils";
 import { createOrder } from "../../service/orderService";
 import { resetCart } from "../../service/cartService";
+import { APP } from "../../constants";
 
 const transformCartToOrderData = (cart: any) => {
   return cart.items.map((item: any) => ({
@@ -75,7 +76,7 @@ const CheckoutForm = ({
       })
       .catch(() =>
         alert(
-          "Something went wrong. Please contact Yatri support or try again later."
+          "Something went wrong. Please contact support team or try again later."
         )
       )
       .finally(() => setSubmitting(false));
@@ -206,7 +207,7 @@ const CheckoutForm = ({
                   height={25}
                   layout="intrinsic"
                   src={"/assets/fonepay-logo.png"}
-                  alt={"Yatri Payment QR code"}
+                  alt={"Payment QR code"}
                 />
               </div>
               <div style={{ maxWidth: 220, margin: "0 auto" }}>
@@ -215,8 +216,8 @@ const CheckoutForm = ({
                   width={"100%"}
                   height={"100%"}
                   layout="responsive"
-                  src={"/assets/yatri-gibl.png"}
-                  alt={"Yatri Payment QR code"}
+                  src={"/assets/gibl.png"}
+                  alt={"Payment QR code"}
                 />
               </div>
               <p style={{ fontSize: "0.8rem" }}>
@@ -267,8 +268,7 @@ const CheckoutForm = ({
           <Link href="/policies#delivery-returns">
             <a className="link">return policies</a>
           </Link>
-          . You also consent to some of your data being stored by Yatri
-          Motorcycles, which may be used to make shopping experiences better for
+          . You also consent to some of your data being stored by {APP.NAME}, which may be used to make shopping experiences better for
           you.
         </p>
       </form>
