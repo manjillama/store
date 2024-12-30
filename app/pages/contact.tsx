@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Footer from "../components/footer";
 import PageHead from "../components/page-head";
-import ECMAP from "../components/ec-map";
+import ECMAP from "../components/map";
 import Navbar from "../components/navbar";
 
 const ContactPage = () => (

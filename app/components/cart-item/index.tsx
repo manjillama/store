@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { removeFromCartUsingIndex } from "../../service/cart";
+import { removeFromCartUsingIndex } from "../../service/cartService";
 
 const CartItem = ({ item, index }: { item: any; index: number }) => {
   const { size, quantity, product } = item;
@@ -34,7 +34,7 @@ const CartItem = ({ item, index }: { item: any; index: number }) => {
                 priority
                 width={110}
                 height={110}
-                src={product.images[0].url}
+                src={product.images[0]}
                 alt={product.name}
               />
             </a>

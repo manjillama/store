@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Loader from "../../components/commons";
-import { getCart } from "../../service/cart";
+import { getCart } from "../../service/cartService";
 import CartItem from "../../components/cart-item";
 import Footer from "../../components/footer";
 import PageHead from "../../components/page-head";

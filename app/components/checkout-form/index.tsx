@@ -6,9 +6,8 @@ import Link from "next/link";
 import { TextInput } from "../form/TextInput";
 import { SelectInput } from "../form/SelectInput";
 import { scrollToTop } from "../../utils";
-import { createOrder } from "../../api/products";
-import { resetCart } from "../../service/cart";
-import { RadioInput } from "../form";
+import { createOrder } from "../../service/orderService";
+import { resetCart } from "../../service/cartService";
 
 const transformCartToOrderData = (cart: any) => {
   return cart.items.map((item: any) => ({
@@ -33,7 +32,7 @@ const CheckoutForm = ({
     city: deliveryCity,
     address: "",
     street: "",
-    order: transformCartToOrderData(cart),
+    orderItems: transformCartToOrderData(cart),
     totalPrice: transformCartToOrderData(cart).reduce(
       (a: number, b: { totalPrice: number }) => a + b.totalPrice,
       0
@@ -70,9 +69,9 @@ const CheckoutForm = ({
     setSubmitting(true);
 
     createOrder(formProps)
-      .then(({ data }) => {
+      .then((customerOrder) => {
         resetCart();
-        router.push("/success/" + data.uuid);
+        router.push("/success/" + customerOrder.id);
       })
       .catch(() =>
         alert(
@@ -89,8 +88,6 @@ const CheckoutForm = ({
 
   function handlePaymentCheck(e: any) {
     const { checked } = e.currentTarget;
-    console.log(checked);
-
     setPaymentCheck(checked);
   }
 
@@ -160,15 +157,6 @@ const CheckoutForm = ({
                 value={city}
                 onChange={onChange}
                 options={[
-                  {
-                    label: "EC Pickup (Baluwatar)",
-                    value: "EC Pickup (Baluwatar)",
-                  },
-                  {
-                    label: "__________________",
-                    value: "",
-                    disabled: true,
-                  },
                   ...deliveryCities.map((deliveryCity: { city: string }) => ({
                     label: deliveryCity.city,
                     value: deliveryCity.city,

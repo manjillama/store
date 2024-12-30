@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getHomePageCarousel } from "../api";
-import { getProducts } from "../api/products";
+import { getProducts } from "../service/productService";
 import Carousel from "../components/carousel";
 import SampleNextArrow from "../components/carousel/SampleNextArrow";
 import SamplePrevArrow from "../components/carousel/SamplePrevArrow";
@@ -13,7 +13,8 @@ import Footer from "../components/footer";
 import ItemCard from "../components/item-card";
 import Navbar from "../components/navbar";
 import PageHead from "../components/page-head";
-import { ICtaCarousel, IProduct } from "../interface";
+import { ICtaCarousel } from "../interface";
+import Product from "../models/Product";
 
 const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
   return (
@@ -63,7 +64,7 @@ const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
         </Carousel>
       </header>
       <main className="container-l">
-        <NewIn />
+        {/* <NewIn /> */}
 
         {/* <section>
           <img
@@ -90,15 +91,16 @@ const Home = ({ homePageCarousel }: { homePageCarousel: ICtaCarousel[] }) => {
 };
 
 function NewIn() {
-  const [products, setProducts] = useState<IProduct[] | null>(null);
+  const [products, setProducts] = useState<Product[] | null>(null);
   // products?created_at_gte=2021-08-07
   useEffect(() => {
     async function fetchData() {
-      const { data } = await getProducts({
+      const product = await getProducts({
         _sort: `created_at:DESC`,
         _limit: 12,
       });
-      setProducts(data);
+      console.log("new in", product);
+      setProducts(product);
     }
     fetchData();
   }, []);
@@ -146,17 +148,16 @@ function NewIn() {
 }
 
 function Featured() {
-  const [products, setProducts] = useState<IProduct[] | null>(null);
-  // products?_sort=created_at:DESC&isFeatured=true
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await getProducts({
-        _sort: `created_at:DESC`,
+      const products = await getProducts({
+        _sort: `createdAt:DESC`,
         isFeatured: true,
         _limit: 12,
       });
-      setProducts(data);
+      setProducts(products);
     }
     fetchData();
   }, []);
@@ -168,7 +169,7 @@ function Featured() {
       </section>
     );
 
-  if (products.length < 3) return null;
+  // if (products.length < 3) return null;
   return (
     <section>
       <h2 className="section-title">Featured</h2>
@@ -204,16 +205,19 @@ function Featured() {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { data } = await getHomePageCarousel();
+  // const { data } = await getHomePageCarousel();
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!data) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
+  // return {
+  //   props: { homePageCarousel: data }, // will be passed to the page component as props
+  // };
   return {
-    props: { homePageCarousel: data }, // will be passed to the page component as props
+    props: { homePageCarousel: [] }, // will be passed to the page component as props
   };
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { getCart } from "../../service/cart";
+import { getCart } from "../../service/cartService";
 import CartItem from "../../components/cart-item";
 import Footer from "../../components/footer";
 import PageHead from "../../components/page-head";
@@ -87,16 +87,13 @@ const deliveryCities = [
   { city: "Udayapur", price: 160 },
 ];
 
-// const deliveryPrice = (deliveryCity: string) =>
-//   deliveryCities.find((city) => city.city === deliveryCity)?.price;
-
 const Checkout = () => {
   const [cart, setCart] = useState<ICart | null>(null);
 
   useEffect(() => {
     setCart(getCart());
   }, []);
-  const [deliveryCity, setDeliveryCity] = useState("EC Pickup (Baluwatar)");
+  const [deliveryCity, setDeliveryCity] = useState("Kathmandu");
 
   if (!cart) return <Loader />;
 

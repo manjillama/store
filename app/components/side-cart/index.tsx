@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import Loader from "../commons";
-import { getCart } from "../../service/cart";
+import { getCart } from "../../service/cartService";
 import { useEffect, useState } from "react";
 import { ICart, ICartItem } from "../../interface/ICart";
-import { IProduct } from "../../interface";
 
 const SideCart = ({
   onBlur,
@@ -96,7 +95,7 @@ function RenderItem({ item }: { item: ICartItem }) {
             <Image
               priority
               layout="fill"
-              src={product.images[0].url}
+              src={product.images[0]}
               alt={product.name}
             />
           </a>

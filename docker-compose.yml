@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    image: manjiltamang/store-app:v1
+    ports:
+      - "3005:3005"
+    restart: always
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
+    command: ["npm", "run", "dev"]
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: manjiltamang/store-api:v1
+    ports:
+      - "1337:1337"
+    restart: always
+    volumes:
+      - ./api:/usr/src/app
+      - /usr/src/app/node_modules
+    command: ["npm", "run", "develop"]

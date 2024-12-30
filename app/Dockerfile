@@ -1,14 +1,15 @@
 FROM node:14-alpine
 
-WORKDIR '/usr/src/app'
+WORKDIR /usr/src/app
 
-COPY ./package.json ./
-COPY ./yarn.lock ./
+COPY package.json ./
 
-RUN yarn install
+RUN apk --no-cache add curl
+
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
 EXPOSE 3005
 
-CMD yarn build && yarn start
+CMD ["npm", "run", "dev"]

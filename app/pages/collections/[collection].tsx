@@ -1,18 +1,19 @@
 import { GetServerSidePropsContext } from "next";
-import { getProducts } from "../../api/products";
+// import { getProducts } from "../../api/products";
 import Footer from "../../components/footer";
 import ItemCard from "../../components/item-card";
 import Navbar from "../../components/navbar";
 import PageHead from "../../components/page-head";
-import { IProduct } from "../../interface";
 import { slugToString } from "../../utils";
+import Product from "../../models/Product";
+import { getProducts } from "../../service/productService";
 
-const Product = ({
+const Collection = ({
   params,
   products,
 }: {
   params: any;
-  products: IProduct[];
+  products: Product[];
 }) => {
   const collection = slugToString(params.collection);
 
@@ -53,22 +54,19 @@ const Product = ({
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const queryParams = {
     ...context.query,
-    "collections.slug": context?.params?.collection,
+    "filters[collections][slug][$eq]": context?.params?.collection
   } as any;
 
-  delete queryParams.collection;
-
-  const { data } = await getProducts(queryParams);
-
-  if (!data) {
+  const products = await getProducts(queryParams);
+  if (!products) {
     return {
       notFound: true,
     };
   }
 
   return {
-    props: { params: context.params, products: data }, // will be passed to the page component as props
+    props: { params: context.params, products: JSON.parse(JSON.stringify(products)) },
   };
 }
 
-export default Product;
+export default Collection;

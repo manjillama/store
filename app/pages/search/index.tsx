@@ -1,17 +1,17 @@
 import { GetServerSidePropsContext } from "next";
-import { searchProducts } from "../../api/products";
 import Footer from "../../components/footer";
 import ItemCard from "../../components/item-card";
 import Navbar from "../../components/navbar";
 import PageHead from "../../components/page-head";
-import { IProduct } from "../../interface";
+import { searchProducts } from "../../service/productService";
+import Product from "../../models/Product";
 
 const Search = ({
   params,
   products,
 }: {
   params: any;
-  products: IProduct[];
+  products: Product[];
 }) => {
   const renderProductList = () => {
     if (products.length > 0)
@@ -22,7 +22,7 @@ const Search = ({
       ));
     else
       return (
-        <div>
+        <div style={{ padding: "0 0.5rem" }}>
           <p className="text-muted">Sorry, nothing matches your search! :(</p>
           <p>
             <small>
@@ -59,12 +59,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { q } = context.query;
     if (!q) throw new Error("No search term present");
 
-    const { data } = await searchProducts(q as string);
+    const products = await searchProducts(q as string);
 
     return {
-      props: { params: context.query, products: data }, // will be passed to the page component as props
+      props: { params: context.query, products: JSON.parse(JSON.stringify(products)) },
     };
   } catch (error) {
+    console.error(error)
     return {
       notFound: true,
     };

@@ -1,41 +1,25 @@
-## Project introduction
+Install docker
 
-Yatri Motorcycles e-store platform built using Strapi for backend and next.js for frontend
+### Development
 
-- MySQL as a database
-- Next.js for frontend
-- Strapi v3 for backend
-
-## Server setup
-
-- Navigate to `strapi-api` folder. Copy the `.env.example` and save as `.env`. Update the variables. In the project directory, you can run:
-
-```bash
-  yarn install
-  yarn develop
+```
+cd store
+docker-compose up
 ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3008](http://localhost:3008) to view it in the browser.
+Use `Dev Container` VS Code extension to use docker container as a full-featured development environment.
+https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
 
-## Site setup
+### Production
 
-- Navigate to `app` folder. Copy the `.env.example.local` and save as `.env.local`. Update the variables. In the project directory, you can run:
-
-```bash
-  yarn install
-  yarn dev
+```
+cd store
+docker-compose -f docker-compose.prod.yml up
 ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3005](http://localhost:3005) to view it in the browser.
+### Note idk..
 
-## All-in-one production setup (docker)
+In the collection section the product is matched using the collection slug name.
 
-- Run `docker-compose -f docker-compose.prod.yml up` from the root folder to run all the applications at once. To run a specific application use `docker-compose -f docker-compose.prod.yml up <service_name>`. To run the application in background, use `docker-compose -f docker-compose.prod.yml up -d <service_name>`. The logs can be seen through `docker-compose -f docker-compose.prod.yml logs`.
-
-- Checkout the applications through `http://localhost:<PORT>`.
-
-- Run `docker-compose ps` from the root folder to check the status of the containers.
-
-- You can also execute the commands as usual by entering into the container: `docker-compose exec <service_name> bash`. It gives a bash shell.
+Add your image source hostname to `next.config.js` inside `app` directory.
+https://github.com/vercel/next.js/discussions/18311

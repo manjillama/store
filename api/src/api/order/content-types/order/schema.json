@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "fullname": {
+      "type": "string",
+      "required": true
+    },
+    "totalPrice": {
+      "type": "decimal",
+      "required": true
+    },
+    "orderStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Processing",
+        "Shipped",
+        "Delivered",
+        "Cancelled"
+      ],
+      "default": "Processing"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "customerNote": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "orderItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "entities.order-item"
+    }
+  }
+}

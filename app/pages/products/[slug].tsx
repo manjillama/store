@@ -11,14 +11,14 @@ import SamplePrevArrow from "../../components/carousel/SamplePrevArrow";
 import Footer from "../../components/footer";
 import ItemCard from "../../components/item-card";
 import PageHead from "../../components/page-head";
-import { getProductBySlug, getProducts } from "../../api/products";
-import { IProduct, productImageType } from "../../interface";
 import { RenderProductPrice } from "../../components/commons";
 import SideCart from "../../components/side-cart";
-import { addItemToCart } from "../../service/cart";
+import { addItemToCart } from "../../service/cartService";
 import Navbar from "../../components/navbar";
+import { getProductBySlug, getProducts } from "../../service/productService";
+import Product from "../../models/Product";
 
-const Product = ({ product }: { product: IProduct }) => {
+const ProductView = ({ product }: { product: Product }) => {
   const {
     id,
     name,
@@ -122,15 +122,7 @@ const Product = ({ product }: { product: IProduct }) => {
             <div className="product-gallery">
               <ul className="thumbnails list-nostyle">
                 {images.map(
-                  (
-                    {
-                      id,
-                      formats: {
-                        thumbnail: { url },
-                      },
-                    },
-                    index
-                  ) => (
+                  (url, index) => (
                     <li className="image-thumbnail" key={id}>
                       <img
                         className="img-fluid"
@@ -211,7 +203,7 @@ const Product = ({ product }: { product: IProduct }) => {
               <div className="p-detail">
                 <div>
                   <h2>Brand</h2>
-                  {brand?.name || "-"}
+                  {brand || "-"}
                 </div>
                 <div>
                   <h2>Product Details</h2>
@@ -244,7 +236,7 @@ function ImageMagnify({
   images,
 }: {
   slider: any;
-  images: productImageType[];
+  images: string[];
 }) {
   var settings = {
     dots: true,
@@ -255,7 +247,7 @@ function ImageMagnify({
   };
   return (
     <Slider ref={slider} {...settings}>
-      {images.map(({ url }, index) => (
+      {images.map((url, index) => (
         <div key={index}>
           <ReactImageMagnify
             className="img-magnify"
@@ -283,19 +275,28 @@ function ImageMagnify({
 }
 
 function Recommended({ collectionSlugs }: { collectionSlugs: string[] }) {
-  const [products, setProducts] = useState<IProduct[] | null>(null);
-  // products?_where[_or][0][collections.slug]=casual-clothes&_where[_or][1][collections.slug]=hoodies-sweatshirts
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   const query = qs.stringify({
-    _where: {
-      _or: collectionSlugs.map((slug) => ({ "collections.slug": slug })),
+    filters: {
+      $or: collectionSlugs.map(slug => (
+        {
+          collections: {
+            slug: {
+              $eq: slug
+            }
+          },
+        }
+      ))
     },
+  }, {
+    encodeValuesOnly: true,
   });
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await getProducts({}, `?${query}`);
-      setProducts(data);
+      const products = await getProducts({}, `?${query}`);
+      setProducts(products);
     }
     fetchData();
   }, []);
@@ -340,15 +341,16 @@ function Recommended({ collectionSlugs }: { collectionSlugs: string[] }) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
-    const { data } = await getProductBySlug(context.params?.slug as string);
+    const product = await getProductBySlug(context.params?.slug as string);
     return {
-      props: { product: data }, // will be passed to the page component as props
+      props: { product: JSON.parse(JSON.stringify(product)) }
     };
   } catch (error) {
+    console.error(error);
     return {
       notFound: true,
     };
   }
 }
 
-export default Product;
+export default ProductView;

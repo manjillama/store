@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from "axios";
 
 const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_SERVER,
+  baseURL: process.env.API_SERVER ? `${process.env.API_SERVER}/api` : `${process.env.NEXT_PUBLIC_API_SERVER}/api`,
 });
 
 export function get(url: string, params = {}): Promise<AxiosResponse> {

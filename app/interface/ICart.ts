@@ -1,4 +1,4 @@
-import { IProduct } from "./IProduct";
+import Product from "../models/Product";
 
 export interface ICartItem {
   size?: string;
@@ -6,7 +6,7 @@ export interface ICartItem {
   quantities?: number;
   price: number;
   totalPrice: number;
-  product: IProduct;
+  product: Product;
 }
 
 export interface ICart {
