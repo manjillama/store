@@ -6,8 +6,8 @@ module.exports = ({ env }) => ({
         apiKey: env("SENDGRID_API_KEY"),
       },
       settings: {
-        defaultFrom: "mail@manjiltamang.com",
-        defaultReplyTo: "mail@manjiltamang.com",
+        defaultFrom: env("DEFAULT_EMAIL_FROM"),
+        defaultReplyTo: env("DEFAULT_EMAIL_TO"),
       },
     },
   },
@@ -15,8 +15,6 @@ module.exports = ({ env }) => ({
     config: {
       provider: "aws-s3",
       providerOptions: {
-        // baseUrl: env('CDN_URL'),
-        // rootPath: env('CDN_ROOT_PATH'),
         s3Options: {
           credentials: {
             accessKeyId: env("AWS_ACCESS_KEY_ID"),

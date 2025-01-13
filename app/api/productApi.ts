@@ -42,15 +42,6 @@ const getProducts = (
 };
 
 const searchProducts = (searchTerm: string) => {
-  // const query = qs.stringify({
-  //   _where: {
-  //     _or: [
-  //       { name_contains: q },
-  //       { "collections.name_contains": q },
-  //       { "brand.name_contains": q },
-  //     ],
-  //   },
-  // });
   const query = qs.stringify({
     filters: {
       $or: [
@@ -76,7 +67,6 @@ const searchProducts = (searchTerm: string) => {
       ],
     },
   });
-  console.log("Query", query);
   return get(`/products?${query}&populate=*`);
 };
 

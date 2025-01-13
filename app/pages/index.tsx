@@ -99,7 +99,6 @@ function NewIn() {
         _sort: `created_at:DESC`,
         _limit: 12,
       });
-      console.log("new in", product);
       setProducts(product);
     }
     fetchData();

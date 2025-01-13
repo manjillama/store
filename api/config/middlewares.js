@@ -19,7 +19,7 @@ module.exports = ({ env }) => [
             "data:",
             "cdn.jsdelivr.net",
             "strapi.io",
-            `${env("AWS_BUCKET")}.s3.amazonaws.com`,
+            `${env("AWS_BUCKET")}.s3.${env("AWS_REGION")}.amazonaws.com`,
           ],
         },
       },
