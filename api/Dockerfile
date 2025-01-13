@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 1337
 
-CMD ["npm", "run", "develop"]
+CMD npm run build && npm run start

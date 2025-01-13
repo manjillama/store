@@ -41,6 +41,12 @@ From the root project directory:
 
 **Note for API Server:**
 
+- You can change the default random base64 from the example environment variable:
+
+  ```sh
+  openssl rand -base64 16
+  ```
+
 - This project uses AWS S3 to store assets (product images). Ensure that Bucket ACLs are enabled and the bucket policy is set to public.
 
 - For images/media hosted on a different domain, add the domain inside the `contentSecurityPolicy.directives` in the [`api/config/middlewares.js`](api/config/middlewares.js) file.
